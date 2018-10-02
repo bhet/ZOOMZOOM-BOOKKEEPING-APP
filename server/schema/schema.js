@@ -69,7 +69,7 @@ const RootQuery = new GraphQLObjectType({
       }
     },
 
-    registereadings:{
+    registerreadings:{
       type: new GraphQLList(RegisterReadingType),
       resolve(parent, args){
         return RegisterReading.find({})
@@ -120,7 +120,7 @@ const Mutation = new GraphQLObjectType({
           lotto_lottery: args.lotto_lottery,
           debt_collection: args.debt_collection,
           individual: args.individual,
-          
+
         });
         return extracash.save()
       }
