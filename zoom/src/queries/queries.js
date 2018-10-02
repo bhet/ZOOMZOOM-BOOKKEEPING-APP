@@ -34,7 +34,19 @@ query($id: ID){
 }
 `
 
+const getRegisterReading = gql`
+  {
+    registerreadings{
+      id
+      sale
+      check_cash
+      date
+    }
+  }
+`
+
 export {
   getExtraCashes,
-  getIndividualExtraCash
+  getIndividualExtraCash,
+  getRegisterReading
 }

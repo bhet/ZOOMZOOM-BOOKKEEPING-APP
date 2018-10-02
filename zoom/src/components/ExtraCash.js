@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
-import { getExtraCashes } from '../queries/queries';
 import { Table } from 'reactstrap';
+import { sumForcash } from '../utilities/index';
 
 
 //
 class Extracash extends Component{
 
   render(){
-     const data = this.props.data;
-     console.log("data", data);
+     const data = this.props.extraCash;
+
     return (
-      <div id="trans-record">
+      <div id="extra-cash">
         <div className="col">
             <h4>Daily Cash inflow Table</h4>
         <Table bordered style={{overflowX: "scroll"}}>
@@ -32,11 +31,12 @@ class Extracash extends Component{
              <tbody>
                {
                  data.loading ?
-                   <div>Loading Transactions...</div>
-                  : data.extracashes.map(item =>{
+                   <tr><td>Loading Transactions...</td></tr>
+                  : data.extracashes.map((item, i) =>{
+
                      return (
                        <tr key={item.id}>
-                          <th scope="row">{item.date}</th>
+                          <th scope="row">{item.date.slice(0,10)}</th>
                           <td>{item.yesterday_cash}</td>
                           <td>{item.cash_from_bank}</td>
                           <td>{item.cash_from_atm}</td>
@@ -45,7 +45,7 @@ class Extracash extends Component{
                           <td>{item.money_gram}</td>
                           <td>{item.lotto_lottery}</td>
                           <td>{item.individual}</td>
-                          <td>{item.total}</td>
+                          <td>{this.props.totalCashInflow[i]}</td>
                         </tr>
                      );
                    })
