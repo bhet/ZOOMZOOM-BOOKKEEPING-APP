@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
-import { getExtraCashes, getRegisterReading } from '../queries/queries'
+import {
+  getExtraCashes,
+  getRegisterReading,
+  getCashOutflow,
+  getRemainingBalance
+ } from '../queries/queries'
+
+//utilities function
 import { sumForcash } from '../utilities/index';
 
 //components
 import Extracash from './ExtraCash';
 import RegisterReading from './RegisterReading';
-
+import CashOutflow from './CashOutflow';
+import RemainingBalance from './RemainingBalance';
 
 class TransactionRecord extends Component{
-  state = {
-    totalCashInflow: this.props.getExtraCashes.extracashes ? this.props.getExtraCashes.extracashes.map(sumForcash): [],
-
-  }
 
   render(){
 
     const extraCash = this.props.getExtraCashes;
     const registerReading = this.props.getRegisterReading;
-    console.log("totalCashInflow",this.state.totalCashInflow)
-
+    const cashOutflow = this.props.getCashOutflow;
+    const remainingBalance = this.props.getRemainingBalance;
     return (
       <div id="trans-record">
-        <Extracash extraCash={extraCash} totalCashInflow={this.state.totalCashInflow}/>
+        <Extracash extraCash={extraCash} />
         <RegisterReading registerReading={registerReading}/>
+        <CashOutflow cashOutflow={cashOutflow}/>
+        <RemainingBalance remainingBalance={remainingBalance}/>
       </div>
     );
   }
@@ -31,4 +37,7 @@ class TransactionRecord extends Component{
 
 export default compose(
   graphql(getExtraCashes, { name: "getExtraCashes"}),
-  graphql(getRegisterReading, { name: "getRegisterReading"}))(TransactionRecord);
+  graphql(getRegisterReading, { name: "getRegisterReading"}),
+  graphql(getCashOutflow, {name: "getCashOutflow"}),
+  graphql(getRemainingBalance, {name: "getRemainingBalance"})
+)(TransactionRecord);

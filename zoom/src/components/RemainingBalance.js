@@ -3,24 +3,24 @@ import { Table, hover } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 
 //component
-import TotalCashInflow from './TotalCashInflow';
 
-class RegisterReading extends Component{
+
+class RemainingBalance extends Component{
   render(){
 
-    const data = this.props.registerReading;
-    console.log(data)
-
+    const data = this.props.remainingBalance;
+    console.log("data", data);
     return (
       <div>
         <div className="col">
-            <h4>Daily Register Reading Table</h4>
+            <h4>Daily Remaining Balance in Store Table</h4>
         <Table hover bordered style={{overflowX: "scroll"}}>
              <thead>
                <tr>
                  <th>DATE</th>
-                 <th>Sale</th>
-                 <th>Check Cash</th>
+                 <th>Checks</th>
+                 <th>Cash</th>
+                 <th>Change</th>
                  <th>Total</th>
                </tr>
              </thead>
@@ -29,14 +29,15 @@ class RegisterReading extends Component{
 
                  (data.loading)?
                  <tr><td>Loading Transactions...</td></tr>
-                 : data.registerreadings.map(item =>{
+                 : data.remainingbalances.map(item =>{
 
                    return(
                      <tr key={item.id}>
                           <th scope="row">{item.date.slice(0,10)}</th>
-                          <td>{item.sale}</td>
-                          <td>{item.check_cash}</td>
-                          <td><TotalCashInflow totalRegisterReading={sumForcash(item)}  /></td>
+                          <td>{item.checks}</td>
+                          <td>{item.cash}</td>
+                          <td>{item.change}</td>
+                          <td>{sumForcash(item)}</td>
                         </tr>
                    )
                  })
@@ -50,4 +51,4 @@ class RegisterReading extends Component{
   }
 }
 
-export default RegisterReading;
+export default RemainingBalance;

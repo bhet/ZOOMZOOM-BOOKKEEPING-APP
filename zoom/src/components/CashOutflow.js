@@ -3,29 +3,27 @@ import { Table } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 
 //component
-import TotalCashInflow from './TotalCashInflow';
 
-
-class Extracash extends Component{
+class CashOutflow extends Component{
 
   render(){
-     const data = this.props.extraCash;
-
+     const data = this.props.cashOutflow;
+     console.log(data);
     return (
-      <div id="extra-cash">
+      <div id="cash-outflow">
         <div className="col">
-            <h4>Daily Extra Cash Table</h4>
+            <h4>Daily Cash Outflow Table</h4>
         <Table hover bordered style={{overflowX: "scroll"}}>
              <thead>
                <tr>
                  <th>DATE</th>
-                 <th>Yesterday Cash</th>
-                 <th>Cash From Bank</th>
-                 <th>Cash From ATM</th>
-                 <th>Orlandi Valuta</th>
+                 <th>Vendor Paid</th>
+                 <th>Credit Card</th>
+                 <th>Lotto Lottery</th>
+                 <th>Bank Deposit</th>
+                 <th>Atm Deposit</th>
                  <th>Money Order</th>
                  <th>Money Gram</th>
-                 <th>Lotto Lottery</th>
                  <th>Individual</th>
                  <th>Total</th>
                </tr>
@@ -34,20 +32,20 @@ class Extracash extends Component{
                {
                  data.loading ?
                    <tr><td>Loading Transactions...</td></tr>
-                  : data.extracashes.map((item, i) =>{
+                  : data.cashoutflows.map((item, i) =>{
 
                      return (
                        <tr key={item.id}>
                           <th scope="row">{item.date.slice(0,10)}</th>
-                          <td>{item.yesterday_cash}</td>
-                          <td>{item.cash_from_bank}</td>
-                          <td>{item.cash_from_atm}</td>
-                          <td>{item.orlandi_valuta}</td>
+                          <td>{item.vendor_paidout}</td>
+                          <td>{item.credit_card}</td>
+                          <td>{item.lotto_lottery}</td>
+                          <td>{item.bank_deposit}</td>
+                          <td>{item.atm_deposit}</td>
                           <td>{item.money_order}</td>
                           <td>{item.money_gram}</td>
-                          <td>{item.lotto_lottery}</td>
                           <td>{item.individual}</td>
-                          <td><TotalCashInflow totalExtraCash={sumForcash(item)}  /></td>
+                          <td>{sumForcash(item)}</td>
                         </tr>
                      );
                    })
@@ -60,4 +58,4 @@ class Extracash extends Component{
   }
 }
 
-export default Extracash;
+export default CashOutflow;

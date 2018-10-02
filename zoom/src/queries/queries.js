@@ -44,9 +44,36 @@ const getRegisterReading = gql`
     }
   }
 `
+const getCashOutflow = gql`
+{
+  cashoutflows{
+    vendor_paidout
+    credit_card
+    lotto_lottery
+    bank_deposit
+    atm_deposit
+    money_order
+    money_gram
+    individual
+    date
+  }
+}
+`
+const getRemainingBalance = gql`
+{
+  remainingbalances{
+    checks
+    cash
+    change
+    date
+  }
+}
+`
 
 export {
   getExtraCashes,
   getIndividualExtraCash,
-  getRegisterReading
+  getRegisterReading,
+  getCashOutflow,
+  getRemainingBalance
 }

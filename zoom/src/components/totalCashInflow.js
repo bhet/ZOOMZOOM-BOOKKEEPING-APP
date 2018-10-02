@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 const TotalCashInflow = (props) =>{
-  console.log("props", props);
+  let totalInflow = props.totalExtraCash + props.totalRegisterReading
+  console.log(typeof totalInflow);
   return (
     <div>
       <div>{props.totalRegisterReading}</div>
