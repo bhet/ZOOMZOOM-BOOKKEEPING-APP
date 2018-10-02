@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 
+//component
+import TotalCashInflow from './totalCashInflow';
 
-//
+
 class Extracash extends Component{
 
   render(){
@@ -45,7 +47,7 @@ class Extracash extends Component{
                           <td>{item.money_gram}</td>
                           <td>{item.lotto_lottery}</td>
                           <td>{item.individual}</td>
-                          <td>{this.props.totalCashInflow[i]}</td>
+                          <td><TotalCashInflow totalExtraCash={sumForcash(item)}  /></td>
                         </tr>
                      );
                    })

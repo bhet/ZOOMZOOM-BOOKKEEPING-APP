@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 
+//component
+import TotalCashInflow from './totalCashInflow';
+
 class RegisterReading extends Component{
   render(){
 
@@ -33,7 +36,7 @@ class RegisterReading extends Component{
                           <th scope="row">{item.date.slice(0,10)}</th>
                           <td>{item.sale}</td>
                           <td>{item.check_cash}</td>
-                          <td>{sumForcash(item)}</td>
+                          <td><TotalCashInflow totalRegisterReading={sumForcash(item)}  /></td>
                         </tr>
                    )
                  })
