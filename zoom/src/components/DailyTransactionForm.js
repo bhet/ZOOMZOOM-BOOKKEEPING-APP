@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form } from 'reactstrap';
 import { graphql, compose } from 'react-apollo';
-import { addExtraCashMutation, getExtraCashes, addRegisterReadingMutation } from '../queries/queries';
+import { addExtraCashMutation,
+  getExtraCashes,
+  addRegisterReadingMutation,
+  addCashOutflowMutation,
+  addRemainingBalanceMutation} from '../queries/queries';
 
 
 
@@ -65,6 +69,25 @@ class Entryform extends Component{
         variables:{
           sale: this.state.registerreadings.sale,
           check_cash: this.state.registerreadings.check_cash
+        }
+      });
+      this.props.addCashOutflowMutation({
+        variables:{
+          vendor_paidout: this.state.cashoutflows.vendor_paidout,
+          credit_card: this.state.cashoutflows.credit_card,
+          lotto_lottery: this.state.cashoutflows.lotto_lottery,
+          bank_deposit: this.state.cashoutflows.bank_deposit,
+          atm_deposit: this.state.cashoutflows.atm_deposit,
+          money_order: this.state.cashoutflows.money_order,
+          money_gram: this.state.cashoutflows.money_gram,
+          individual: this.state.cashoutflows.individual
+        }
+      });
+      this.props.addRemainingBalanceMutation({
+        variables:{
+          checks: this.state.remainigbalances.checks,
+          cash: this.state.remainigbalances.cash,
+          change: this.state.remainigbalances.change
         }
       })
   }
@@ -241,12 +264,42 @@ class Entryform extends Component{
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, individual: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
-        
+
         </div>
         </div>
 
+        <div className='col border border-info'>
+        <h4>Enter Remaining Balance</h4>
+        <div className="register border border-light">
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+            <span className="input-group-text">Checks in $</span>
+            <input type="number" min="0" max="0" step="any" className="form-control"
+            placeholder="0.00"
+            onChange={event=>this.setState({remainigbalances:{...this.state.remainigbalances, checks: parseFloat(event.target.value)}})} required/>
+            </div>
+          </div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+            <span className="input-group-text">Cash in $</span>
+            <input type="number" min="0" max="0" step="any" className="form-control"
+            placeholder="0.00"
+            onChange={event=>this.setState({remainigbalances:{...this.state.remainigbalances, cash: parseFloat(event.target.value)}})} required/>
+            </div>
+          </div>
+          <div className="input-group mb-3">
+            <div className="input-group-prepend">
+            <span className="input-group-text">Changes in $</span>
+            <input type="number" min="0" max="0" step="any" className="form-control"
+            placeholder="0.00"
+            onChange={event=>this.setState({remainigbalances:{...this.state.remainigbalances, change: parseFloat(event.target.value)}})} required/>
+            </div>
+          </div>
         </div>
-        <Button type="submit">Submit</Button>
+      </div>
+
+        </div>
+        <Button type="submit" className="btn btn-success">Submit</Button>
         </Form>
       </div>
     )
@@ -256,5 +309,7 @@ class Entryform extends Component{
 export default compose(
   graphql(addExtraCashMutation, {name: "addExtraCashMutation"}),
   graphql(addRegisterReadingMutation,{name: "addRegisterReadingMutation"}),
+  graphql(addCashOutflowMutation,{name: "addCashOutflowMutation"}),
+  graphql(addRemainingBalanceMutation,{name: "addRemainingBalanceMutation"}),
   graphql(getExtraCashes, {name: "getExtraCashes"})
 )(Entryform)

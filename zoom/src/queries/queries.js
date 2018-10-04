@@ -109,6 +109,47 @@ const addRegisterReadingMutation = gql`
     }
   }
 `
+const addCashOutflowMutation = gql`
+  mutation($vendor_paidout: Float!,
+    $credit_card: Float!,
+    $lotto_lottery: Float!,
+    $bank_deposit: Float!,
+    $atm_deposit: Float!,
+    $money_order: Float!,
+    $money_gram: Float!,
+    $individual: Float!){
+      addCashOutflow(
+        vendor_paidout: $vendor_paidout,
+        credit_card: $credit_card,
+        lotto_lottery: $lotto_lottery,
+        bank_deposit: $bank_deposit,
+        atm_deposit: $atm_deposit,
+        money_order: $money_order,
+        money_gram: $money_gram,
+        individual: $individual
+      ){
+        vendor_paidout
+        credit_card
+        lotto_lottery
+        bank_deposit
+        atm_deposit
+        money_order
+        money_gram
+        individual
+      }
+    }
+`
+
+const addRemainingBalanceMutation = gql`
+  mutation($checks: Float!, $cash: Float!, $change: Float!){
+    addRemainingBalance(checks: $checks, cash: $cash, change: $change){
+      checks
+      cash
+      change
+    }
+  }
+`
+
 
 
 export {
@@ -118,5 +159,7 @@ export {
   getCashOutflow,
   getRemainingBalance,
   addExtraCashMutation,
-  addRegisterReadingMutation
+  addRegisterReadingMutation,
+  addCashOutflowMutation,
+  addRemainingBalanceMutation
 }
