@@ -11,7 +11,7 @@ const getExtraCashes = gql`
     money_order
     money_gram
     lotto_lottery
-    debt_collection
+    collect
     individual
     date
   }
@@ -28,7 +28,7 @@ query($id: ID){
     money_order
     money_gram
     lotto_lottery
-    debt_collection
+    collect
     individual
   }
 }
@@ -70,10 +70,53 @@ const getRemainingBalance = gql`
 }
 `
 
+const addExtraCashMutation = gql`
+  mutation($yesterday_cash: Float!,
+    $cash_from_bank: Float!,
+    $cash_from_atm: Float!,
+    $orlandi_valuta: Float!,
+    $money_order: Float!,
+    $money_gram: Float!,
+    $lotto_lottery: Float!,
+    $collect: Float!
+    $individual: Float!){
+      addExtraCash(yesterday_cash: $yesterday_cash,
+        cash_from_bank: $cash_from_bank,
+        cash_from_atm: $cash_from_atm,
+        orlandi_valuta: $orlandi_valuta,
+        money_order: $money_order,
+        money_gram: $money_gram,
+        lotto_lottery: $lotto_lottery,
+        collect: $collect,
+        individual: $individual){
+          yesterday_cash
+          cash_from_bank
+          cash_from_atm
+          orlandi_valuta
+          money_order
+          money_gram
+          lotto_lottery
+          collect
+          individual
+        }
+    }
+`
+const addRegisterReadingMutation = gql`
+  mutation($sale: Float!, $check_cash: Float!){
+    addRegisterReading(sale: $sale, check_cash: $check_cash){
+      sale
+      check_cash
+    }
+  }
+`
+
+
 export {
   getExtraCashes,
   getIndividualExtraCash,
   getRegisterReading,
   getCashOutflow,
-  getRemainingBalance
+  getRemainingBalance,
+  addExtraCashMutation,
+  addRegisterReadingMutation
 }
