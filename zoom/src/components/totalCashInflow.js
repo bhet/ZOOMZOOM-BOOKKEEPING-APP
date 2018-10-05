@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const TotalCashInflow = (props) =>{
   let totalInflow = props.totalExtraCash + props.totalRegisterReading

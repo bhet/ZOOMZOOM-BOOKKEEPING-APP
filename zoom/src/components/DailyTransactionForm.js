@@ -45,9 +45,7 @@ class Entryform extends Component{
 
   };
 
-  displayExtraCash(){
-    let data = this.props.getExtraCashes;
-  }
+  
   handleSubmit = (event) =>{
     event.preventDefault();
 
@@ -97,7 +95,7 @@ class Entryform extends Component{
       <div className="container" style={{display: 'flex'}}>
       <Form onSubmit={this.handleSubmit}>
         <div className='row'>
-          <div className='col'>
+          <div className='col border border-info'>
             <h4>Enter Cash Entry of Today</h4>
             <div className="extracash">
             <div className="input-group mb-3">
@@ -175,7 +173,7 @@ class Entryform extends Component{
           </div>
           </div>
 
-          <div className='col'>
+          <div className='col border border-info'>
           <h4>Enter Register Entry of Today</h4>
           <div className="register">
             <div className="input-group mb-3">
@@ -197,7 +195,7 @@ class Entryform extends Component{
           </div>
         </div>
 
-        <div className='col'>
+        <div className='col border border-info'>
           <h4>Enter CashOutflow(Total Vendor paidout) Here</h4>
           <div className="extracash">
           <div className="input-group mb-3">
@@ -270,7 +268,7 @@ class Entryform extends Component{
 
         <div className='col border border-info'>
         <h4>Enter Remaining Balance</h4>
-        <div className="register border border-light">
+        <div className=" border border-light">
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Checks in $</span>

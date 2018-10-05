@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter , Link, Route, Switch } from 'react-router-dom'
+import { BrowserRouter , Route, Switch } from 'react-router-dom'
 
 //components
 import TransactionRecord from './components/TransactionRecord';
@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Entryform from './components/DailyTransactionForm';
 import Main from './components/main';
 import NavBar from './components/Navbar'
+import Signup from './components/Signup';
 
 //apollo client setup
 const client = new ApolloClient({
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/main" component={Main}/>
             <Route path="/dash" component={TransactionRecord}/>
             <Route path="/post" component={Entryform}/>
+            <Route path="/signup" component={Signup}/>
           </Switch>
         </ApolloProvider>
       </BrowserRouter>

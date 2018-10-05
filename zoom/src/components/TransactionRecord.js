@@ -7,8 +7,7 @@ import {
   getRemainingBalance
  } from '../queries/queries'
 
-//utilities function
-import { sumForcash } from '../utilities/index';
+
 
 //components
 import Extracash from './ExtraCash';
