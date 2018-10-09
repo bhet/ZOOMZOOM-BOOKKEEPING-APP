@@ -10,6 +10,11 @@ import Entryform from './components/DailyTransactionForm';
 import Main from './components/main';
 import NavBar from './components/Navbar'
 import Signup from './components/Signup';
+import ExtraCashUpdate from './components/updateRecord/ExtraCashUpdate';
+
+
+
+import Gridlayout from './components/gridTemplate'
 
 //apollo client setup
 const client = new ApolloClient({
@@ -23,12 +28,16 @@ class App extends Component {
 
         <ApolloProvider client={client}>
           <NavBar />
+
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/main" component={Main}/>
             <Route path="/dash" component={TransactionRecord}/>
             <Route path="/post" component={Entryform}/>
             <Route path="/signup" component={Signup}/>
+
+            <Route path="/layout" component={Gridlayout} />
+            <Route path="/update/:id" component={ExtraCashUpdate}/>
           </Switch>
         </ApolloProvider>
       </BrowserRouter>

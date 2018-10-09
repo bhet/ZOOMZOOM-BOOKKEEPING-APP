@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
+import { Link } from 'react-router-dom';
 
 //component
 import TotalCashInflow from './TotalCashInflow';
 
 
 class Extracash extends Component{
+
 
   render(){
      const data = this.props.extraCash;
@@ -48,6 +50,7 @@ class Extracash extends Component{
                           <td>{item.lotto_lottery}</td>
                           <td>{item.individual}</td>
                           <td><TotalCashInflow totalExtraCash={sumForcash(item)}  /></td>
+                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
                         </tr>
                      );
                    })

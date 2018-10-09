@@ -17,6 +17,9 @@ const getExtraCashes = gql`
   }
 }
 `
+
+
+
 const getIndividualExtraCash = gql`
 query($id: ID){
   extraCash(id: $id){
@@ -151,6 +154,94 @@ const addRemainingBalanceMutation = gql`
 `
 
 
+const getLastExtraCashRecord = gql`
+{
+  lastRecordOfExtraCash{
+    id
+    yesterday_cash
+    cash_from_bank
+    cash_from_atm
+    orlandi_valuta
+    money_order
+    money_gram
+    lotto_lottery
+    collect
+    individual
+    date
+  }
+}
+`
+const getLastRegisterRecord = gql`
+  {
+    lastRecordOfRegister{
+      id
+      sale
+      check_cash
+    }
+  }
+`
+const getLastRemainingBalance = gql`
+  {
+    lastRecordOfRemainingBalance{
+    id
+    checks
+    cash
+    change
+  }
+}
+`
+
+const getLastCashOutflow = gql`
+  {
+    lastRecordOfCashOutflow{
+    id
+    vendor_paidout
+    credit_card
+    lotto_lottery
+    bank_deposit
+    atm_deposit
+    money_order
+    money_gram
+    individual
+  }
+}
+`
+
+const updateExtraCash = gql`
+mutation(
+  $id: ID!
+  $yesterday_cash: Float!,
+  $cash_from_bank: Float!,
+  $cash_from_atm: Float!,
+  $orlandi_valuta: Float!,
+  $money_order: Float!,
+  $money_gram: Float!,
+  $lotto_lottery: Float!,
+  $collect: Float!
+  $individual: Float!){
+    updateExtraCash(
+      id: $id
+      yesterday_cash: $yesterday_cash,
+      cash_from_bank: $cash_from_bank,
+      cash_from_atm: $cash_from_atm,
+      orlandi_valuta: $orlandi_valuta,
+      money_order: $money_order,
+      money_gram: $money_gram,
+      lotto_lottery: $lotto_lottery,
+      collect: $collect,
+      individual: $individual){
+        yesterday_cash
+        cash_from_bank
+        cash_from_atm
+        orlandi_valuta
+        money_order
+        money_gram
+        lotto_lottery
+        collect
+        individual
+      }
+  }
+`
 
 export {
   getExtraCashes,
@@ -161,5 +252,11 @@ export {
   addExtraCashMutation,
   addRegisterReadingMutation,
   addCashOutflowMutation,
-  addRemainingBalanceMutation
+  addRemainingBalanceMutation,
+  getLastExtraCashRecord,
+  getLastRegisterRecord,
+  getLastRemainingBalance,
+  getLastCashOutflow,
+  updateExtraCash
+
 }

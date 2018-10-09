@@ -1,36 +1,72 @@
-import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import React from 'react'
+import { withRouter } from 'react-router-dom';
 
-export default class NavBar extends React.Component {
-    state = {
-      collapsed: true
-    }
+import {
+
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink } from 'reactstrap';
+
+class NavBar extends React.Component {
+  logInPaths = [
+    '/dash',
+    '/addform',
+    '/logout'
+  ]
+  state = {
+    isOpen: false,
+    isLoggedIn: !!this.logInPaths.filter(item=>item === this.props.location.pathname)[0]
+  }
 
 
-  toggleNavbar =()=>{
+  toggle = () => {
     this.setState({
-      collapsed: !this.state.collapsed
+      isOpen: !this.state.isOpen
     });
   }
   render() {
+    console.log(this.props)
+    let linksToRender = this.state.isLoggedIn ? (
+      <div>
+      <NavItem>
+        <a href="/dash" className="nav-link">Dash</a>
+      </NavItem>
+      <NavItem>
+        <a href="/addform" className="nav-link">Everyday Entry</a>
+      </NavItem>
+      <NavItem>
+        <a href="/logout" className="nav-link">Logout</a>
+      </NavItem>
+      </div>
+    ):(
+      <div>
+      <NavItem>
+        <a href="/login" className="nav-link">Login</a>
+      </NavItem>
+      <NavItem>
+        <a href="/signup" className="nav-link">Signup</a>
+      </NavItem>
+    </div>)
     return (
       <div>
-        <Navbar color="faded" light>
-          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-          <NavbarBrand href="/" className="mr-auto">ZOOMZOOM</NavbarBrand>
-          <Collapse isOpen={!this.state.collapsed} navbar>
+        <Navbar color="primary"  dark expand="md">
+          <NavbarBrand href="/">ZOOMZOOM</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
 
-            <Nav navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-              </NavItem>
+            <Nav className="ml-auto" navbar>
+            <NavItem>
+              <a href="/" className="nav-link">Home</a>
+            </NavItem>
+            {linksToRender}
             </Nav>
-          </Collapse>
+
         </Navbar>
       </div>
     );
   }
 }
+
+export default withRouter(NavBar);
