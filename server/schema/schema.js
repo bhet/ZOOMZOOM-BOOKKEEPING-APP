@@ -1,4 +1,7 @@
 const graphql = require('graphql');
+const GraphQLDate = require('graphql-date');
+const moment = require('moment');
+
 //import mongoose schema module from models folder
 const ExtraCash = require('../models/extraCash');
 const RegisterReading = require('../models/registerReading');
@@ -25,18 +28,80 @@ const {
  } = graphql;
 
 
-
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-
-    extraCash: {
+    extraCash:{
       type: ExtraCashType,
       args: {id: {type: GraphQLID}},
       resolve(parent, args){
         return ExtraCash.findById(args.id)
       }
     },
+
+    lastRecordOfExtraCash:{
+      type: new GraphQLList(ExtraCashType),
+
+      async resolve(parent, args){
+        let allCollection = await ExtraCash.find({})
+        let results = allCollection.reduce((latest, item)=>{
+          if(moment(latest.date) > moment(item.date)){
+            return latest;
+          }else{
+            return item;
+          }
+        })
+        return [results];
+      }
+    },
+
+    lastRecordOfRegister:{
+      type: new GraphQLList(RegisterReadingType),
+      async resolve(parent, args){
+        let allCollection = await RegisterReading.find({})
+        let results = allCollection.reduce((latest, item)=>{
+          if(moment(latest.date) > moment(item.date)){
+            return latest;
+          }else{
+            return item;
+          }
+        })
+        return [results];
+      }
+    },
+
+    lastRecordOfCashOutflow:{
+      type: new GraphQLList(CashOutflowType),
+      async resolve(parent, args){
+        let allCollection = await CashOutflow.find({})
+        let results = allCollection.reduce((latest, item)=>{
+          if(moment(latest.date) > moment(item.date)){
+            return latest;
+          }else{
+            return item;
+          }
+        })
+        return [results];
+      }
+    },
+
+    lastRecordOfRemainingBalance:{
+      type: new GraphQLList(RemainingBalanceType),
+      async resolve(parent, args){
+        let allCollection = await RemainingBalance.find({})
+        let results = allCollection.reduce((latest, item)=>{
+          if(moment(latest.date) > moment(item.date)){
+            return latest;
+          }else{
+            return item;
+          }
+        })
+        return [results];
+      }
+    },
+
+
+
 
     registerReading: {
       type: RegisterReadingType,
@@ -65,6 +130,13 @@ const RootQuery = new GraphQLObjectType({
     extracashes:{
       type: new GraphQLList(ExtraCashType),
       resolve(parent, args){
+        return ExtraCash.find({ })
+      }
+    },
+
+  extracashByorder:{
+      type: new GraphQLList(ExtraCashType),
+      resolve(parent, args){
         return ExtraCash.find({})
       }
     },
@@ -90,7 +162,10 @@ const RootQuery = new GraphQLObjectType({
       }
     }
   }
-})
+});
+
+
+
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -105,7 +180,7 @@ const Mutation = new GraphQLObjectType({
         money_order: {type: new GraphQLNonNull(GraphQLFloat)},
         money_gram: {type: new GraphQLNonNull(GraphQLFloat)},
         lotto_lottery: {type: new GraphQLNonNull(GraphQLFloat)},
-        debt_collection: {type: new GraphQLNonNull(GraphQLFloat)},
+        collect: {type: new GraphQLNonNull(GraphQLFloat)},
         individual: {type: new GraphQLNonNull(GraphQLFloat)},
 
       },
@@ -118,7 +193,7 @@ const Mutation = new GraphQLObjectType({
           money_order: args.money_order,
           money_gram: args.money_gram,
           lotto_lottery: args.lotto_lottery,
-          debt_collection: args.debt_collection,
+          collect: args.collect,
           individual: args.individual,
 
         });
@@ -182,6 +257,73 @@ const Mutation = new GraphQLObjectType({
           change: args.change
         });
         return remainingBalance.save();
+      }
+    },
+
+    updateRemainingBalance:{
+      type: RemainingBalanceType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        checks: {type: new GraphQLNonNull(GraphQLFloat)},
+        cash: {type: new GraphQLNonNull(GraphQLFloat)},
+        change: {type: new GraphQLNonNull(GraphQLFloat)}
+      },
+      resolve(parent, args) {
+        let { id, ...other } = args;
+        return RemainingBalance.findByIdAndUpdate(args.id, other)
+
+      }
+    },
+
+    updateCashOutFlow:{
+      type: CashOutflowType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        vendor_paidout: {type: new GraphQLNonNull(GraphQLFloat)},
+        credit_card: {type: new GraphQLNonNull(GraphQLFloat)},
+        lotto_lottery: {type: new GraphQLNonNull(GraphQLFloat)},
+        bank_deposit: {type: new GraphQLNonNull(GraphQLFloat)},
+        atm_deposit: {type: new GraphQLNonNull(GraphQLFloat)},
+        money_order: {type: new GraphQLNonNull(GraphQLFloat)},
+        money_gram: {type: new GraphQLNonNull(GraphQLFloat)},
+        individual: {type: new GraphQLNonNull(GraphQLFloat)}
+      },
+      resolve(parent, args){
+        let { id, ...other } = args;
+        return CashOutflow.findByIdAndUpdate(args.id, other)
+        }
+    },
+
+    updateRegisterReading:{
+      type: RegisterReadingType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        sale: {type: new GraphQLNonNull(GraphQLFloat)},
+        check_cash: {type: new GraphQLNonNull(GraphQLFloat)}
+      },
+      resolve(parent, args){
+        let {id, ...other} = args;
+        return RegisterReading.findByIdAndUpdate(args.id, other)
+      }
+    },
+
+    updateExtraCash:{
+      type: ExtraCashType,
+      args: {
+        id: {type: new GraphQLNonNull(GraphQLID)},
+        yesterday_cash: {type: new GraphQLNonNull(GraphQLFloat)},
+        cash_from_bank: {type: new GraphQLNonNull(GraphQLFloat)},
+        cash_from_atm: {type: new GraphQLNonNull(GraphQLFloat)},
+        orlandi_valuta: {type: new GraphQLNonNull(GraphQLFloat)},
+        money_order: {type: new GraphQLNonNull(GraphQLFloat)},
+        money_gram: {type: new GraphQLNonNull(GraphQLFloat)},
+        lotto_lottery: {type: new GraphQLNonNull(GraphQLFloat)},
+        collect: {type: new GraphQLNonNull(GraphQLFloat)},
+        individual: {type: new GraphQLNonNull(GraphQLFloat)},
+      },
+      resolve(parent, args){
+        let {id, ...other} = args;
+        return ExtraCash.findByIdAndUpdate(args.id, other)
       }
     }
   }

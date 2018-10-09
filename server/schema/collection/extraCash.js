@@ -20,7 +20,7 @@ module.exports = new GraphQLObjectType({
     money_order: {type: GraphQLFloat},
     money_gram: {type: GraphQLFloat},
     lotto_lottery: {type: GraphQLFloat},
-    debt_collection: {type: GraphQLFloat},
+    collect: {type: GraphQLFloat},
     individual: {type: GraphQLFloat},
     date: {type: GraphQLDate}
   })

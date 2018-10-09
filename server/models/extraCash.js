@@ -9,7 +9,7 @@ const extracashSchema = new Schema({
   money_order: Number,
   money_gram: Number,
   lotto_lottery: Number,
-  debt_collection: Number,
+  collect: Number,
   individual: Number,
   date: { type: Date, default: Date.now }
 });
