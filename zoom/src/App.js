@@ -11,7 +11,7 @@ import Main from './components/main';
 import TopNav from './components/Navbar'
 import Signup from './components/Signup';
 import ExtraCashUpdate from './components/updateRecord/ExtraCashUpdate';
-
+import Tabar from './components/sidebar';
 
 
 import Gridlayout from './components/gridTemplate'
@@ -25,7 +25,6 @@ class App extends Component {
   render(){
     return (
       <BrowserRouter>
-
         <ApolloProvider client={client}>
           <TopNav />
           <Switch>
@@ -34,8 +33,8 @@ class App extends Component {
             <Route path="/dash" component={TransactionRecord}/>
             <Route path="/post" component={Entryform}/>
             <Route path="/signup" component={Signup}/>
-            <Route path="/layout" component={Gridlayout} />
             <Route path="/update/:id" component={ExtraCashUpdate}/>
+            <Route path="/layout" component={Tabar} />
           </Switch>
         </ApolloProvider>
       </BrowserRouter>
