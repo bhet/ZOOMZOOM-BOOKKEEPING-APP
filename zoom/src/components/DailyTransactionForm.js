@@ -45,7 +45,7 @@ class Entryform extends Component{
 
   };
 
-  
+
   handleSubmit = (event) =>{
     event.preventDefault();
 
@@ -102,7 +102,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Yesterday Cash in $</span>
               <input type="number" step="any"
-              placeholder="0.00" id="yesterday_cash_field"
+              placeholder="0.00" 
               onChange={event=>this.setState({extracashes: {...this.state.extracashes, yesterday_cash:parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -110,7 +110,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Cash from Bank in $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="cash_from_bank_field"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes: {...this.state.extracashes, cash_from_bank: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -118,7 +118,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text"> Cash from ATM in $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="cash_from_atm_filed"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, cash_from_atm: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -126,7 +126,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Orlandi Valuta in $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="orlandi_valuta_filed"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, orlandi_valuta: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -134,7 +134,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Money Order in  $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="money_order_field"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, money_order: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -142,7 +142,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Money Gram in $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="money_gram_field"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, money_gram: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -150,7 +150,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Lotto and Lottery in  $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="lotto_lottery_field"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, lotto_lottery: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -158,7 +158,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Collection in $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="anonymous"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, collect: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -166,7 +166,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Individual in $</span>
               <input type="number" step="any" className="form-control"
-              placeholder="0.00" id="anonymous"
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes:{...this.state.extracashes, individual: parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -200,65 +200,65 @@ class Entryform extends Component{
           <div className="extracash">
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Vendor paidout in $</span>
+            <span className="input-group-text">Vendor Paidout in $</span>
             <input type="number" step="any"
-            placeholder="0.00" id="yesterday_cash_field"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows: {...this.state.cashoutflows, vendor_paidout:parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Cash from Bank in $</span>
+            <span className="input-group-text">Credit Card $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="cash_from_bank_field"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows: {...this.state.cashoutflows, credit_card: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text"> Cash from ATM in $</span>
+            <span className="input-group-text"> Lotto&Lottery Paid in $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="cash_from_atm_filed"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, lotto_lottery: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Orlandi Valuta in $</span>
+            <span className="input-group-text">Bank Deposit $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="orlandi_valuta_filed"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows,  bank_deposit: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Money Order in  $</span>
+            <span className="input-group-text">ATM Deposit in  $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="money_order_field"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, atm_deposit: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Money Gram in $</span>
+            <span className="input-group-text">Money Order Paid in $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="money_gram_field"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, money_order: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Lotto and Lottery in  $</span>
+            <span className="input-group-text">Money Gram Paid in  $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="lotto_lottery_field"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, money_gram: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
-            <span className="input-group-text">Collection in $</span>
+            <span className="input-group-text">Individual in $</span>
             <input type="number" step="any" className="form-control"
-            placeholder="0.00" id="anonymous"
+            placeholder="0.00"
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, individual: parseFloat(event.target.value)}})} required/>
             </div>
           </div>

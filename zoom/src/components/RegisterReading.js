@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Table, hover } from 'reactstrap';
+import { Table, hover, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
+import { Link } from 'react-router-dom';
 
 //component
 import TotalCashInflow from './TotalCashInflow';
@@ -37,6 +38,7 @@ class RegisterReading extends Component{
                           <td>{item.sale}</td>
                           <td>{item.check_cash}</td>
                           <td><TotalCashInflow totalRegisterReading={sumForcash(item)}  /></td>
+                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
                         </tr>
                    )
                  })

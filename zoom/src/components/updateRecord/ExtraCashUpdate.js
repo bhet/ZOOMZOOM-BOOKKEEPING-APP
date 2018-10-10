@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
 
 import { updateExtraCash,
-  getIndividualExtraCash,
+  getExtraCashById,
   getExtraCashes
 } from '../../queries/queries';
 
@@ -55,7 +55,7 @@ class ExtraCashUpdate extends Component{
         loaded:true
       })
     }
-    console.log(this.state);
+
   }
 
   render(){
@@ -67,12 +67,12 @@ class ExtraCashUpdate extends Component{
       extraCash = <p>Data is Loading...</p>
     }
 
-    console.log("extraCash", extraCash);
+console.log("id", id);
     return(
       <div>
         <Form onSubmit={this.handleSubmit}>
+          <h4>Enter Cash Entry of Today</h4>
           <div className='col border border-info'>
-            <h4>Enter Cash Entry of Today</h4>
             <div className="extracash">
             <div className="input-group mb-3">
               <div className="input-group-prepend">
@@ -160,7 +160,7 @@ class ExtraCashUpdate extends Component{
 export default compose(
   graphql(updateExtraCash, {name: 'updateExtraCash'}),
   graphql(getExtraCashes, {name: "getExtraCashes"}),
-  graphql(getIndividualExtraCash, {
+  graphql(getExtraCashById, {
     options: (props) =>{
       return {
         variables:{

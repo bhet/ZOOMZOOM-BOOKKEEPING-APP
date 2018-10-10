@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Table, hover } from 'reactstrap';
+import { Table, hover, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
+import { Link} from 'react-router-dom';
 
 //component
 
@@ -38,6 +39,7 @@ class RemainingBalance extends Component{
                           <td>{item.cash}</td>
                           <td>{item.change}</td>
                           <td>{sumForcash(item)}</td>
+                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
                         </tr>
                    )
                  })

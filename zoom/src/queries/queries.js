@@ -20,7 +20,7 @@ const getExtraCashes = gql`
 
 
 
-const getIndividualExtraCash = gql`
+const getExtraCashById = gql`
 query($id: ID){
   extraCash(id: $id){
     id
@@ -47,6 +47,18 @@ const getRegisterReading = gql`
     }
   }
 `
+const getRegisterReadingById = gql`
+  query($id: ID){
+    registerReading(id: $id){
+      id
+      sale
+      check_cash
+      date
+    }
+  }
+`
+
+
 const getCashOutflow = gql`
 {
   cashoutflows{
@@ -62,6 +74,24 @@ const getCashOutflow = gql`
   }
 }
 `
+const getCashOutflowById = gql`
+  query($id: ID){
+    cashOutflow(id: $id){
+      id
+      vendor_paidout
+      credit_card
+      lotto_lottery
+      bank_deposit
+      atm_deposit
+      money_order
+      money_gram
+      individual
+      date
+    }
+  }
+`
+
+
 const getRemainingBalance = gql`
 {
   remainingbalances{
@@ -71,6 +101,17 @@ const getRemainingBalance = gql`
     date
   }
 }
+`
+
+const getRemainingBalanceById = gql`
+  query($id: ID){
+    remainingBalance(id: $id){
+      checks
+      cash
+      change
+      date
+    }
+  }
 `
 
 const addExtraCashMutation = gql`
@@ -243,9 +284,64 @@ mutation(
   }
 `
 
+
+const updateCashOutflow = gql`
+mutation(
+  $id: ID!
+  $vendor_paidout: Float!,
+  $credit_card: Float!,
+  $lotto_lottery: Float!,
+  $bank_deposit: Float!,
+  $atm_deposit: Float!,
+  $money_order: Float!,
+  $money_gram: Float!,
+  $individual: Float!){
+    updateCashOutflow(
+      id: $id
+      vendor_paidout: $vendor_paidout,
+      credit_card: $credit_card,
+      lotto_lottery: $lotto_lottery,
+      bank_deposit: $bank_deposit,
+      atm_deposit: $atm_deposit,
+      money_order: $money_order,
+      money_gram: $money_gram,
+      individual: $individual
+    ){
+      vendor_paidout
+      credit_card
+      lotto_lottery
+      bank_deposit
+      atm_deposit
+      money_order
+      money_gram
+      individual
+    }
+  }
+
+`
+
+const updateRegisterReading = gql`
+mutation($id: ID!, $sale: Float!, $check_cash: Float!){
+  updateRegisterReading(id: $id, sale: $sale, check_cash: $check_cash){
+    sale
+    check_cash
+  }
+}
+`
+
+const updateRemainingBalance = gql`
+mutation($id: ID!, $checks: Float!, $cash: Float!, $change: Float!){
+  updateRemainingBalance(id: $id, checks: $checks, cash: $cash, change: $change){
+    checks
+    cash
+    change
+  }
+}
+`
+
 export {
   getExtraCashes,
-  getIndividualExtraCash,
+  getExtraCashById,
   getRegisterReading,
   getCashOutflow,
   getRemainingBalance,
@@ -257,6 +353,13 @@ export {
   getLastRegisterRecord,
   getLastRemainingBalance,
   getLastCashOutflow,
-  updateExtraCash
+  updateExtraCash,
+  updateCashOutflow,
+  updateRegisterReading,
+  updateRemainingBalance,
+  getCashOutflowById,
+  getRemainingBalanceById,
+  getRegisterReadingById
+
 
 }

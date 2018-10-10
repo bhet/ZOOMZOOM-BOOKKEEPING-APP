@@ -8,7 +8,7 @@ import TransactionRecord from './components/TransactionRecord';
 import Home from './components/Home';
 import Entryform from './components/DailyTransactionForm';
 import Main from './components/main';
-import NavBar from './components/Navbar'
+import TopNav from './components/Navbar'
 import Signup from './components/Signup';
 import ExtraCashUpdate from './components/updateRecord/ExtraCashUpdate';
 
@@ -27,15 +27,13 @@ class App extends Component {
       <BrowserRouter>
 
         <ApolloProvider client={client}>
-          <NavBar />
-
+          <TopNav />
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/main" component={Main}/>
             <Route path="/dash" component={TransactionRecord}/>
             <Route path="/post" component={Entryform}/>
             <Route path="/signup" component={Signup}/>
-
             <Route path="/layout" component={Gridlayout} />
             <Route path="/update/:id" component={ExtraCashUpdate}/>
           </Switch>

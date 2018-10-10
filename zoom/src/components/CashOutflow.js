@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
+import { Link } from 'react-router-dom';
 
 //component
 
@@ -8,7 +9,7 @@ class CashOutflow extends Component{
 
   render(){
      const data = this.props.cashOutflow;
-     console.log(data);
+     
     return (
       <div id="cash-outflow">
         <div className="col">
@@ -46,6 +47,7 @@ class CashOutflow extends Component{
                           <td>{item.money_gram}</td>
                           <td>{item.individual}</td>
                           <td>{sumForcash(item)}</td>
+                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
                         </tr>
                      );
                    })

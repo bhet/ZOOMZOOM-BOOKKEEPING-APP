@@ -10,7 +10,7 @@ import {
   NavItem,
   NavLink } from 'reactstrap';
 
-class NavBar extends React.Component {
+class TopNav extends React.Component {
   logInPaths = [
     '/dash',
     '/addform',
@@ -28,9 +28,9 @@ class NavBar extends React.Component {
     });
   }
   render() {
-    console.log(this.props)
+    
     let linksToRender = this.state.isLoggedIn ? (
-      <div>
+      <React.Fragment>
       <NavItem>
         <a href="/dash" className="nav-link">Dash</a>
       </NavItem>
@@ -40,16 +40,16 @@ class NavBar extends React.Component {
       <NavItem>
         <a href="/logout" className="nav-link">Logout</a>
       </NavItem>
-      </div>
+    </React.Fragment>
     ):(
-      <div>
+      <React.Fragment>
       <NavItem>
         <a href="/login" className="nav-link">Login</a>
       </NavItem>
       <NavItem>
         <a href="/signup" className="nav-link">Signup</a>
       </NavItem>
-    </div>)
+    </React.Fragment>)
     return (
       <div>
         <Navbar color="primary"  dark expand="md">
@@ -69,4 +69,4 @@ class NavBar extends React.Component {
   }
 }
 
-export default withRouter(NavBar);
+export default withRouter(TopNav);
