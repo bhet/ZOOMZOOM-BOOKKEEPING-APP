@@ -3,7 +3,6 @@ import { Table, hover, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 import { Link} from 'react-router-dom';
 
-
 class RemainingBalance extends Component{
   render(){
     const data = this.props.remainingBalance;
