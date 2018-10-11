@@ -63,7 +63,7 @@ class Entryform extends Component{
           individual: this.state.extracashes.individual
         },
         refetchQueries: [{query: getExtraCashes}]
-      });
+      }).then(res => this.props.history.push('/user/transaction'));
       this.props.addRegisterReadingMutation({
         variables:{
           sale: this.state.registerreadings.sale,
@@ -271,7 +271,7 @@ class Entryform extends Component{
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Checks in $</span>
-            <input type="number" min="0" max="0" step="any" className="form-control"
+            <input type="number"  step="any" className="form-control"
             placeholder="0.00"
             onChange={event=>this.setState({remainigbalances:{...this.state.remainigbalances, checks: parseFloat(event.target.value)}})} required/>
             </div>
@@ -279,7 +279,7 @@ class Entryform extends Component{
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Cash in $</span>
-            <input type="number" min="0" max="0" step="any" className="form-control"
+            <input type="number"   step="any" className="form-control"
             placeholder="0.00"
             onChange={event=>this.setState({remainigbalances:{...this.state.remainigbalances, cash: parseFloat(event.target.value)}})} required/>
             </div>
@@ -287,7 +287,7 @@ class Entryform extends Component{
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Changes in $</span>
-            <input type="number" min="0" max="0" step="any" className="form-control"
+            <input type="number"  step="any" className="form-control"
             placeholder="0.00"
             onChange={event=>this.setState({remainigbalances:{...this.state.remainigbalances, change: parseFloat(event.target.value)}})} required/>
             </div>
