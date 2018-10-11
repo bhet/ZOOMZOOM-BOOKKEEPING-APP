@@ -6,9 +6,7 @@ import { Link} from 'react-router-dom';
 
 class RemainingBalance extends Component{
   render(){
-
     const data = this.props.remainingBalance;
-
     return (
       <div>
         <div className="col">

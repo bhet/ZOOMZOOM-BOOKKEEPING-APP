@@ -15,9 +15,7 @@ import {getLastExtraCashRecord,
   getLastRemainingBalance} from '../queries/queries'
 
 class Main extends Component {
-
   render() {
-
     const extracash = this.props.getLastExtraCashRecord.loading
       ? <p>Extra Cash is Loading...</p>
       : this.props.getLastExtraCashRecord.lastRecordOfExtraCash[0];

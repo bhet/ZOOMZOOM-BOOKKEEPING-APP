@@ -8,9 +8,7 @@ import TotalCashInflow from './TotalCashInflow';
 
 class RegisterReading extends Component{
   render(){
-
     const data = this.props.registerReading;
-
     return (
       <div>
         <div className="col">

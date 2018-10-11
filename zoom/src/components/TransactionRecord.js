@@ -1,7 +1,6 @@
 import React from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-
 import { graphql, compose } from 'react-apollo';
 import {
   getExtraCashes,

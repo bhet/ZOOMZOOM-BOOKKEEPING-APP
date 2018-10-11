@@ -2,7 +2,6 @@ import React from 'react'
 import { withRouter, Link, Route } from 'react-router-dom';
 
 import {
-
   Navbar,
   NavbarToggler,
   NavbarBrand,
@@ -11,9 +10,7 @@ import {
   NavLink } from 'reactstrap';
 
 class TopNav extends React.Component {
-
   render() {
-
     return (
       <div>
         <Navbar color="primary"  dark expand="md">
