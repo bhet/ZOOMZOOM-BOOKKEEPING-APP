@@ -9,52 +9,39 @@ import { updateRemainingBalance,
 
 class RemainingBalanceUpdate extends Component{
   state={
-    loaded: false,
-    remainingbalance: {
       id: this.props.match.params.id,
       checks: 0,
       cash: 0,
       change: 0
-    }
-  };
+    };
 
   handleSubmit = (event)=>{
     event.preventDefault();
     this.props.updateRemainingBalance({
       variables:{
-        id: this.state.remainingbalance.id,
-        checks: this.state.remainingbalance.checks,
-        cash: this.state.remainingbalance.cash,
-        change: this.state.remainingbalance.change
+        id: this.state.id,
+        checks: this.state.checks,
+        cash: this.state.cash,
+        change: this.state.change
       },
       refetchQueries: [{query: getRemainingBalance}]
     }).then(res => this.props.history.push('/user/transaction'))
-  }
-  componentDidMount(){
-    if(this.props.data.loading){
-      return
-    }
-    else{
-      this.setState({
-        remainingbalance: this.props.data.remainingbalance,
-        loaded:true
-      })
-    }
-  }
+  };
   componentDidUpdate(prevProps, prevState){
+    console.log('the data', prevProps)
     if(this.props.data.loading){
       return
-    }
-    if(!this.state.loaded){
-      this.setState({
-        remainingbalance: this.props.data.remainingbalance,
-        loaded:true
-      })
+    } else if(!this.props.data.loading){
+
+      if(prevProps.data.remainingBalance) {
+        if(this.state.cash == 0) {
+          this.setState({ ...this.props.data.remainingBalance })
+        }
+      }
     }
   }
 
   render(){
-    console.log("props", this.props);
     const id = this.props.match.params.id;
     let remainingBalance = this.props.data.loading ?
     <p>Data is Loading...</p>
@@ -63,32 +50,32 @@ class RemainingBalanceUpdate extends Component{
       remainingBalance = <p>Data is Loading...</p>
     }
     return (
-      <Form>
-        <h4>Enter Register Entry of Today</h4>
+      <Form onSubmit={this.handleSubmit}>
+        <h4>Update Remaining Balance on </h4>
         <div className='col border-info'>
         <div className="register">
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Checks $</span>
             <input type="number" step="any" className="form-control"
-            value={remainingBalance.checks}
-            onChange={event=>this.setState({remainingbalance:{...this.state.remainingbalance, checks: parseFloat(event.target.value)}})} required/>
+            value={this.state.checks}
+            onChange={event=>this.setState({checks: parseFloat(event.target.value)})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Cash in $</span>
             <input type="number" step="any" className="form-control"
-            value={remainingBalance.cash}
-            onChange={event=>this.setState({remainingbalance:{...this.state.remainingbalance, cash: parseFloat(event.target.value)}})} required/>
+            value={this.state.cash}
+            onChange={event=>this.setState({cash: parseFloat(event.target.value)})} required/>
             </div>
           </div>
           <div className="input-group mb-3">
             <div className="input-group-prepend">
             <span className="input-group-text">Changes in $</span>
             <input type="number" step="any" className="form-control"
-            value={remainingBalance.change}
-            onChange={event=>this.setState({remainingbalance:{...this.state.remainingbalance, change: parseFloat(event.target.value)}})} required/>
+            value={this.state.change}
+            onChange={event=>this.setState({change: parseFloat(event.target.value)})} required/>
             </div>
           </div>
         </div>

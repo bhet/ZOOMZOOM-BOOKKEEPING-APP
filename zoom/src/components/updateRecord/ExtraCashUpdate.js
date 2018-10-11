@@ -77,7 +77,7 @@ class ExtraCashUpdate extends Component{
     return(
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <h4>Enter Cash Entry of Today</h4>
+          <h4>Update Extra Cash on</h4>
           <div className='col  border-info'>
             <div className="extracash">
             <div className="input-group mb-3">

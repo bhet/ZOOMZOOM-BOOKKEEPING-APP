@@ -216,6 +216,7 @@ const getLastRegisterRecord = gql`
       id
       sale
       check_cash
+      date
     }
   }
 `
@@ -226,6 +227,7 @@ const getLastRemainingBalance = gql`
     checks
     cash
     change
+    date
   }
 }
 `
@@ -241,6 +243,7 @@ const getLastCashOutflow = gql`
     money_order
     money_gram
     individual
+    date
   }
 }
 `

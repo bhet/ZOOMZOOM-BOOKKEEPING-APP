@@ -75,7 +75,7 @@ class CashOutflowUpdate extends Component{
     }
     return (
       <div>
-        <h4>Enter CashOutflow(Total Vendor paidout) Here</h4>
+        <h4>Update CashOutflow(Total Vendor paidout) Here</h4>
         <Form onSubmit={this.handleSubmit}>
           <div className='col border-info'>
             <div className="extracash">

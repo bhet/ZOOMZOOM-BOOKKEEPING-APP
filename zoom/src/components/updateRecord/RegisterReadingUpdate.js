@@ -61,7 +61,7 @@ class RegisterReadingUpdate extends Component{
     }
     return (
       <Form>
-        <h4>Enter Register Entry of Today</h4>
+        <h4>Update Register Reading on </h4>
         <div className='col border-info'>
         <div className="register">
           <div className="input-group mb-3">

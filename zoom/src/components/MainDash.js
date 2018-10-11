@@ -32,12 +32,17 @@ class Main extends Component {
       ? <p>Remaining Balance is Loading...</p>
       : this.props.lastRemainingBalance.lastRecordOfRemainingBalance[0];
 
+    const date = this.props.getLastExtraCashRecord.loading ?
+    <p>Data Loading...</p>
+    : this.props.getLastExtraCashRecord.lastRecordOfExtraCash[0].date.slice(0, 10)
+
     const toBeAccountedFor = (sumForcash(extracash) + sumForcash(registerInfo)) - sumForcash(cashOutflow);
     const cashCount = sumForcash(remainingBalance);
     const displayColor = toBeAccountedFor > cashCount ?
     (<td className="text-danger"><b>Short</b></td>)
     : (<td className="text-warning"><b>Over</b></td>)
     return (<Container className="main">
+    <h3>This Transaction is from {date}</h3>
       <Row>
         <Col>
           <Row>
@@ -259,4 +264,4 @@ export default compose(
   graphql(getLastExtraCashRecord, {name: "getLastExtraCashRecord"}),
   graphql(getLastRegisterRecord, {name: "lastRegisterRecord"}),
   graphql(getLastCashOutflow, {name: "lastCashOutflow"}),
-  graphql(getLastRemainingBalance, {name: "lastRemainingBalance"}),)(Main)
+  graphql(getLastRemainingBalance, {name: "lastRemainingBalance"}))(Main)
