@@ -35,8 +35,8 @@ class Main extends Component {
     const toBeAccountedFor = (sumForcash(extracash) + sumForcash(registerInfo)) - sumForcash(cashOutflow);
     const cashCount = sumForcash(remainingBalance);
     const displayColor = toBeAccountedFor > cashCount ?
-    (<Col className="text-danger"  ><b>Short:</b></Col>)
-    : (<Col className="text-warning" color="yellow" ><b>Over:</b></Col>)
+    (<td className="text-danger"><b>Short</b></td>)
+    : (<td className="text-warning"><b>Over</b></td>)
     return (<Container className="main">
       <Row>
         <Col>
@@ -196,33 +196,57 @@ class Main extends Component {
             </Col>
           </Row>
           <Row>
-            <Col >
-              <Row>
-                <Col>Extra Cash:</Col>
-                <Col>${sumForcash(extracash)}</Col>
-              </Row>
-              <Row>
-                <Col>Register Reading:</Col>
-                <Col>${sumForcash(registerInfo)}</Col>
-              </Row>
-              <Row>
-                <Col><b>Total CashInflow:</b></Col>
-                <Col><b>${sumForcash(extracash) + sumForcash(registerInfo)}</b></Col>
-              </Row>
+            <Col sm={{offset: 2}}>
+              <h5>Total CashInflow Table</h5>
+                <Table hover bordered style={{overflowX: "scroll"
+                  }}>
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Amount in $</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Extra Cash Total</td>
+                      <td>{sumForcash(extracash)}</td>
+                    </tr>
+                    <tr>
+                      <td>Register Reading Total</td>
+                      <td>{sumForcash(registerInfo)}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Total</b></td>
+                      <td><b>{sumForcash(extracash) + sumForcash(registerInfo)}</b></td>
+                    </tr>
+                  </tbody>
+                </Table>
             </Col>
-            <Col>
-              <Row>
-                <Col>To be accounted for:</Col>
-                <Col>{toBeAccountedFor}</Col>
-              </Row>
-              <Row>
-                <Col>Total Cash Count:</Col>
-                <Col>{cashCount}</Col>
-              </Row>
-              <Row>
-                {displayColor}
-                <Col><b>${toBeAccountedFor - cashCount}</b></Col>
-              </Row>
+            <Col sm={{offset: 2}}>
+              <h5>Inflow Outflow Balance</h5>
+                <Table hover bordered style={{overflowX: "scroll"
+                  }}>
+                  <thead>
+                    <tr>
+                      <th>Description</th>
+                      <th>Amount in $</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>To be accounted for</td>
+                      <td>{toBeAccountedFor}</td>
+                    </tr>
+                    <tr>
+                      <td>Total Cash Count</td>
+                      <td>{cashCount}</td>
+                    </tr>
+                    <tr>
+                      <td>{displayColor}</td>
+                      <td><b>{toBeAccountedFor - cashCount}</b></td>
+                    </tr>
+                  </tbody>
+                </Table>
             </Col>
           </Row>
         </Col>
