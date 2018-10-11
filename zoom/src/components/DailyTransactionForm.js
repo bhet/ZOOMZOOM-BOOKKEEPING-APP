@@ -8,7 +8,11 @@ import { addExtraCashMutation,
   getExtraCashes,
   addRegisterReadingMutation,
   addCashOutflowMutation,
-  addRemainingBalanceMutation} from '../queries/queries';
+  addRemainingBalanceMutation,
+  getRegisterReading,
+  getCashOutflow,
+  getRemainingBalance,
+} from '../queries/queries';
 
 class Entryform extends Component{
   state = {

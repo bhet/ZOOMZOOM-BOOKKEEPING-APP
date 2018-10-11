@@ -78,7 +78,7 @@ class ExtraCashUpdate extends Component{
       <div>
         <Form onSubmit={this.handleSubmit}>
           <h4>Enter Cash Entry of Today</h4>
-          <div className='col border border-info'>
+          <div className='col  border-info'>
             <div className="extracash">
             <div className="input-group mb-3">
               <div className="input-group-prepend">

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
-import { updateRegisterReading, getRegisterReadingById} from '../../queries/queries';
+import { updateRegisterReading,
+  getRegisterReadingById,
+  getRegisterReading
+} from '../../queries/queries';
 
 class RegisterReadingUpdate extends Component{
   state={
@@ -31,7 +34,7 @@ class RegisterReadingUpdate extends Component{
     }
     else{
       this.setState({
-        extracashes: this.props.data.extraCash,
+        registerreading: this.props.data.registerreading,
         loaded:true
       })
     }
@@ -59,7 +62,7 @@ class RegisterReadingUpdate extends Component{
     return (
       <Form>
         <h4>Enter Register Entry of Today</h4>
-        <div className='col border border-info'>
+        <div className='col border-info'>
         <div className="register">
           <div className="input-group mb-3">
             <div className="input-group-prepend">

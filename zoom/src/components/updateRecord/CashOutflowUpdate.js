@@ -3,7 +3,10 @@ import { graphql, compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
 
-import { getCashOutflowById, updateCashOutflow } from '../../queries/queries';
+import { getCashOutflowById,
+  updateCashOutflow,
+  getCashOutflow
+ } from '../../queries/queries';
 
 class CashOutflowUpdate extends Component{
   state ={
@@ -74,7 +77,7 @@ class CashOutflowUpdate extends Component{
       <div>
         <h4>Enter CashOutflow(Total Vendor paidout) Here</h4>
         <Form onSubmit={this.handleSubmit}>
-          <div className='col border border-info'>
+          <div className='col border-info'>
             <div className="extracash">
             <div className="input-group mb-3">
               <div className="input-group-prepend">
