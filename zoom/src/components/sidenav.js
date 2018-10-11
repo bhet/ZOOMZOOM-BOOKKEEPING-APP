@@ -7,6 +7,9 @@ const Sidenav = ()=>{
       <div className="sidenav">
      <ul>
        <li>
+         <Link to="/user/dash">Dash Display</Link>
+       </li>
+       <li>
          <Link to="/user/createuser">Create User</Link>
        </li>
        <li>
