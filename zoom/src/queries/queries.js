@@ -18,8 +18,6 @@ const getExtraCashes = gql`
 }
 `
 
-
-
 const getExtraCashById = gql`
 query($id: ID){
   extraCash(id: $id){
