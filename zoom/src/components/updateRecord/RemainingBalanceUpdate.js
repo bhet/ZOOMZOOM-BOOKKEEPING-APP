@@ -53,6 +53,7 @@ class RemainingBalanceUpdate extends Component{
   }
 
   render(){
+    console.log("props", this.props);
     const id = this.props.match.params.id;
     let remainingBalance = this.props.data.loading ?
     <p>Data is Loading...</p>

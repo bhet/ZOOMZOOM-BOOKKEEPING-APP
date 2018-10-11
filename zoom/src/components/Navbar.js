@@ -10,6 +10,11 @@ import {
 
 class TopNav extends React.Component {
 
+  handleLogout = () => {
+    this.props.logOut()
+    this.props.history.push('/')
+  }
+
   render() {
     return this.props.loggedIn ?
     (
@@ -17,7 +22,7 @@ class TopNav extends React.Component {
           <NavbarBrand href="/">ZOOMZOOM</NavbarBrand>
             <Nav className="ml-auto" navbar>
               <NavItem color="white">
-                <div style={{ color: '#FFF' }} onClick={()=>this.props.logOut()}>Logout</div>
+                <div style={{ color: '#FFF' }} onClick={()=> this.handleLogout()}>Logout</div>
               </NavItem>
             </Nav>
         </Navbar>

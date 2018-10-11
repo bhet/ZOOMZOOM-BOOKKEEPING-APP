@@ -32,6 +32,11 @@ class Main extends Component {
       ? <p>Remaining Balance is Loading...</p>
       : this.props.lastRemainingBalance.lastRecordOfRemainingBalance[0];
 
+    const toBeAccountedFor = (sumForcash(extracash) + sumForcash(registerInfo)) - sumForcash(cashOutflow);
+    const cashCount = sumForcash(remainingBalance);
+    const displayColor = toBeAccountedFor > cashCount ?
+    (<Col className="text-danger"  ><b>Short:</b></Col>)
+    : (<Col className="text-warning" color="yellow" ><b>Over:</b></Col>)
     return (<Container className="main">
       <Row>
         <Col>
@@ -208,15 +213,15 @@ class Main extends Component {
             <Col>
               <Row>
                 <Col>To be accounted for:</Col>
-                <Col>{(sumForcash(extracash) + sumForcash(registerInfo)) - sumForcash(cashOutflow)}</Col>
+                <Col>{toBeAccountedFor}</Col>
               </Row>
               <Row>
                 <Col>Total Cash Count:</Col>
-                <Col>{sumForcash(remainingBalance)}</Col>
+                <Col>{cashCount}</Col>
               </Row>
               <Row>
-                <Col><b>Over/Short:</b></Col>
-                <Col><b>${sumForcash(extracash) + sumForcash(registerInfo)}</b></Col>
+                {displayColor}
+                <Col><b>${toBeAccountedFor - cashCount}</b></Col>
               </Row>
             </Col>
           </Row>

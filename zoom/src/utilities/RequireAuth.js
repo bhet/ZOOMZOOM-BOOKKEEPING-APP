@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 export default class RequireAuth extends React.Component {
 
-
     componentDidMount() {
       this._checkAndRedirect();
     }
@@ -10,7 +9,6 @@ export default class RequireAuth extends React.Component {
     componentDidUpdate() {
       this._checkAndRedirect();
     }
-
     _checkAndRedirect() {
       if (!this.props.isAuthenticated) {
         // redirect();

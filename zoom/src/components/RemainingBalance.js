@@ -32,7 +32,7 @@ class RemainingBalance extends Component{
                           <td>{item.cash}</td>
                           <td>{item.change}</td>
                           <td>{sumForcash(item)}</td>
-                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="warning"><Link to={`/user/update/balance/${item.id}`}>Update</Link></Button></td>
                         </tr>
                    )
                  })
