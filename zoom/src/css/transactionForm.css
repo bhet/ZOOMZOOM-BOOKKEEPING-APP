@@ -1,0 +1,10 @@
+form span{
+  text-align:right;
+  padding:6px;
+}
+
+form .input-group-prepend{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}

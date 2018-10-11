@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form } from 'reactstrap';
 import { graphql, compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
+import '../css/transactionForm.css';
 import { addExtraCashMutation,
   getExtraCashes,
   addRegisterReadingMutation,

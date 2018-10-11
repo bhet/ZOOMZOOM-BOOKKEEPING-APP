@@ -52,10 +52,9 @@ input[type=number].input-number–noSpinners { -moz-appearance: textfield; }
 form label{
   padding:6px;
 }
-link{
-  color: #FFF;
-}
 
 ul {
   list-style: none;
 }
+
+/* form style */
