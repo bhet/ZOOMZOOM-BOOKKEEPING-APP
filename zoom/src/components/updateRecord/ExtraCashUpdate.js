@@ -55,7 +55,6 @@ class ExtraCashUpdate extends Component{
       })
     }
   }
-
   render(){
     const id = this.props.match.params.id;
     let extraCash = this.props.data.loading ?
@@ -64,8 +63,6 @@ class ExtraCashUpdate extends Component{
     if(!extraCash){
       extraCash = <p>Data is Loading...</p>
     }
-
-console.log("id", id);
     return(
       <div>
         <Form onSubmit={this.handleSubmit}>

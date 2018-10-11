@@ -46,7 +46,6 @@ class Entryform extends Component{
 
   handleSubmit = (event) =>{
     event.preventDefault();
-
       this.props.addExtraCashMutation({
         variables:{
           yesterday_cash: this.state.extracashes.yesterday_cash,
@@ -88,7 +87,6 @@ class Entryform extends Component{
       })
   }
   render(){
-
     return (
       <div className="container" style={{display: 'flex'}}>
       <Form onSubmit={this.handleSubmit}>

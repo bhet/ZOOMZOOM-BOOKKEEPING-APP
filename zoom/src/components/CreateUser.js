@@ -44,7 +44,6 @@ class CreateUser extends Component{
 
         <button type="submit"><Link to="/dash">Create User</Link></button>
       </form>
-
       </div>
     )
   }

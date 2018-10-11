@@ -136,8 +136,6 @@ class CashOutflowUpdate extends Component{
   }
 }
 
-
-
 export default compose(
   graphql(updateCashOutflow, {name: 'updateCashOutflow'}),
   graphql(getCashOutflowById, {
