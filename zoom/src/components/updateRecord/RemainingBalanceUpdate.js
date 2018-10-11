@@ -23,8 +23,9 @@ class RemainingBalanceUpdate extends Component{
     this.props.updateRemainingBalance({
       variables:{
         id: this.state.remainingbalance.id,
-        sale: this.state.remainingbalance.sale,
-        check_cash: this.state.remainingbalance.check_cash
+        checks: this.state.remainingbalance.checks,
+        cash: this.state.remainingbalance.cash,
+        change: this.state.remainingbalance.change
       },
       refetchQueries: [{query: getRemainingBalance}]
     }).then(res => this.props.history.push('/user/transaction'))
