@@ -48,14 +48,12 @@ class ExtraCashUpdate extends Component{
     if(this.props.data.loading){
       return
     }
-
     if(!this.state.loaded){
       this.setState({
         extracashes: this.props.data.extraCash,
         loaded:true
       })
     }
-
   }
 
   render(){
@@ -148,7 +146,7 @@ console.log("id", id);
             </div>
           </div>
           </div>
-          <Button type="submit" className="btn btn-success"><Link to="/transaction">Submit</Link></Button>
+          <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Submit</Link></Button>
         </Form>
       </div>
     )

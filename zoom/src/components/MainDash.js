@@ -5,15 +5,14 @@ import {
   Col,
   Table,
   hover,
-  Button,
-
+  Button
 } from 'reactstrap';
 import {graphql, compose} from 'react-apollo';
 import {sumForcash} from '../utilities/index';
-
-// import Sidenav from './sidenav.js';
-
-import {getLastExtraCashRecord, getLastRegisterRecord, getLastCashOutflow, getLastRemainingBalance} from '../queries/queries'
+import {getLastExtraCashRecord,
+  getLastRegisterRecord,
+  getLastCashOutflow,
+  getLastRemainingBalance} from '../queries/queries'
 
 class Main extends Component {
 
@@ -37,7 +36,6 @@ class Main extends Component {
 
     return (<Container className="main">
       <Row>
-        
         <Col>
           <Row>
             <Col sm={{offset: 2}}>
@@ -86,10 +84,8 @@ class Main extends Component {
                      <td><b>Total</b></td>
                      <td><b>{sumForcash(extracash)}</b></td>
                     </tr>
-
                 </tbody>
               </Table>
-
             </Col>
             <Col sm={{offset: 2}}>
               <h5>Cash Outflow</h5>
@@ -134,10 +130,8 @@ class Main extends Component {
                       <td><b>Total</b></td>
                       <td><b>{sumForcash(cashOutflow)}</b></td>
                      </tr>
-
                   </tbody>
                 </Table>
-
             </Col>
           </Row>
           <Row>
@@ -227,7 +221,6 @@ class Main extends Component {
                 <Col><b>${sumForcash(extracash) + sumForcash(registerInfo)}</b></Col>
               </Row>
             </Col>
-
           </Row>
         </Col>
       </Row>

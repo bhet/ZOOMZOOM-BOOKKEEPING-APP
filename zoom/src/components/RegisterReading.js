@@ -10,7 +10,6 @@ class RegisterReading extends Component{
   render(){
 
     const data = this.props.registerReading;
-    console.log(data)
 
     return (
       <div>
@@ -27,11 +26,9 @@ class RegisterReading extends Component{
              </thead>
              <tbody>
                {
-
                  (data.loading)?
                  <tr><td>Loading Transactions...</td></tr>
                  : data.registerreadings.map(item =>{
-
                    return(
                      <tr key={item.id}>
                           <th scope="row">{item.date.slice(0,10)}</th>
@@ -43,7 +40,6 @@ class RegisterReading extends Component{
                    )
                  })
                }
-
              </tbody>
            </Table>
          </div>

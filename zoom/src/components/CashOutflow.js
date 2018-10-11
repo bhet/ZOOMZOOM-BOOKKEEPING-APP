@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom';
 //component
 
 class CashOutflow extends Component{
-
   render(){
      const data = this.props.cashOutflow;
-     
     return (
       <div id="cash-outflow">
         <div className="col">
@@ -34,7 +32,6 @@ class CashOutflow extends Component{
                  data.loading ?
                    <tr><td>Loading Transactions...</td></tr>
                   : data.cashoutflows.map((item, i) =>{
-
                      return (
                        <tr key={item.id}>
                           <th scope="row">{item.date.slice(0,10)}</th>

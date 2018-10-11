@@ -16,7 +16,6 @@ body {
   width: 400px;
   height: 400px;
   background-color: #fff;
-  /* position: absolute; */
   left: 0;
   right: 0;
   top: 0;
@@ -51,9 +50,12 @@ input[type=number].input-number–noSpinners { -moz-appearance: textfield; }
 }
 
 form label{
-  /* text-align:right; */
   padding:6px;
 }
 link{
   color: #FFF;
+}
+
+ul {
+  list-style: none;
 }

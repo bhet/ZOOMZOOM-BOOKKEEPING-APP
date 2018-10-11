@@ -8,7 +8,6 @@ const TotalCashInflow = (props) =>{
       <div>{props.totalRegisterReading}</div>
       <div>{props.totalExtraCash} </div>
     </div>
-
   )
 }
 export default  TotalCashInflow;

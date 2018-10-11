@@ -8,11 +8,8 @@ import TotalCashInflow from './TotalCashInflow';
 
 
 class Extracash extends Component{
-
-
   render(){
      const data = this.props.extraCash;
-
     return (
       <div id="extra-cash">
         <div className="col">
@@ -37,7 +34,6 @@ class Extracash extends Component{
                  data.loading ?
                    <tr><td>Loading Transactions...</td></tr>
                   : data.extracashes.map((item, i) =>{
-
                      return (
                        <tr key={item.id}>
                           <th scope="row">{item.date.slice(0,10)}</th>

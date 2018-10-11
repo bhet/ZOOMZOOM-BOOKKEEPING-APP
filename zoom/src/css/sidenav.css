@@ -1,17 +1,16 @@
-.sidenav {
-    min-height: 1000px;
-    /* width: 200px; */
 
+.sidenav {
+    min-height: 100%;
+    position: relative;
+    font-size: 25px;
     z-index: 1;
     background-color: #12a899;
-    /* overflow-x: hidden; */
-
+    position: absolute;
+    left: 0;
 }
 
 .sidenav Link {
     padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
     color: #fff;;
     display: block;
 }

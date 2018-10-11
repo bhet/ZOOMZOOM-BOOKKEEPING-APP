@@ -27,7 +27,6 @@ const {
 
  } = graphql;
 
-
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -41,7 +40,6 @@ const RootQuery = new GraphQLObjectType({
 
     lastRecordOfExtraCash:{
       type: new GraphQLList(ExtraCashType),
-
       async resolve(parent, args){
         let allCollection = await ExtraCash.find({})
         let results = allCollection.reduce((latest, item)=>{
@@ -99,9 +97,6 @@ const RootQuery = new GraphQLObjectType({
         return [results];
       }
     },
-
-
-
 
     registerReading: {
       type: RegisterReadingType,
@@ -163,9 +158,6 @@ const RootQuery = new GraphQLObjectType({
     }
   }
 });
-
-
-
 
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
@@ -271,7 +263,6 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args) {
         let { id, ...other } = args;
         return RemainingBalance.findByIdAndUpdate(args.id, other)
-
       }
     },
 

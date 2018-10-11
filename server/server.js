@@ -9,9 +9,7 @@ const app = express();
 //allow cross-origin requests
 app.use(cors());
 
-//connect to mlab database
-// make sure to replace my db string & creds with your own
-
+//connect to mongodb
 mongoose.connect('mongodb://localhost/camBhetReg');
 const db = mongoose.connection;
 db.once('open', ()=> console.log("connect to mongodb"))

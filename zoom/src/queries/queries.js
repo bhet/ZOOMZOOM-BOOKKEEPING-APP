@@ -194,7 +194,6 @@ const addRemainingBalanceMutation = gql`
   }
 `
 
-
 const getLastExtraCashRecord = gql`
 {
   lastRecordOfExtraCash{
@@ -284,7 +283,6 @@ mutation(
   }
 `
 
-
 const updateCashOutflow = gql`
 mutation(
   $id: ID!
@@ -360,6 +358,4 @@ export {
   getCashOutflowById,
   getRemainingBalanceById,
   getRegisterReadingById
-
-
 }

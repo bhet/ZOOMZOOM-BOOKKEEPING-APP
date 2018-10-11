@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form } from 'reactstrap';
 import { graphql, compose } from 'react-apollo';
+import { Link } from 'react-router-dom';
 import { addExtraCashMutation,
   getExtraCashes,
   addRegisterReadingMutation,
   addCashOutflowMutation,
   addRemainingBalanceMutation} from '../queries/queries';
-
 
 
 class Entryform extends Component{
@@ -42,9 +42,7 @@ class Entryform extends Component{
       cash: 0,
       change: 0,
     }
-
   };
-
 
   handleSubmit = (event) =>{
     event.preventDefault();
@@ -102,7 +100,7 @@ class Entryform extends Component{
               <div className="input-group-prepend">
               <span className="input-group-text">Yesterday Cash in $</span>
               <input type="number" step="any"
-              placeholder="0.00" 
+              placeholder="0.00"
               onChange={event=>this.setState({extracashes: {...this.state.extracashes, yesterday_cash:parseFloat(event.target.value)}})} required/>
               </div>
             </div>
@@ -172,7 +170,6 @@ class Entryform extends Component{
             </div>
           </div>
           </div>
-
           <div className='col border border-info'>
           <h4>Enter Register Entry of Today</h4>
           <div className="register">
@@ -194,7 +191,6 @@ class Entryform extends Component{
             </div>
           </div>
         </div>
-
         <div className='col border border-info'>
           <h4>Enter CashOutflow(Total Vendor paidout) Here</h4>
           <div className="extracash">
@@ -262,10 +258,8 @@ class Entryform extends Component{
             onChange={event=>this.setState({cashoutflows:{...this.state.cashoutflows, individual: parseFloat(event.target.value)}})} required/>
             </div>
           </div>
-
         </div>
         </div>
-
         <div className='col border border-info'>
         <h4>Enter Remaining Balance</h4>
         <div className=" border border-light">
@@ -295,9 +289,8 @@ class Entryform extends Component{
           </div>
         </div>
       </div>
-
         </div>
-        <Button type="submit" className="btn btn-success">Submit</Button>
+        <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Submit</Link></Button>
         </Form>
       </div>
     )

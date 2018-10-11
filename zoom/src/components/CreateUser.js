@@ -10,7 +10,6 @@ class CreateUser extends Component{
     verifypassword: ''
   }
 
-
   handleSubmit =(event)=>{
     event.preventDefault();
   }

@@ -3,14 +3,12 @@ import { Table, hover, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 import { Link} from 'react-router-dom';
 
-//component
-
 
 class RemainingBalance extends Component{
   render(){
 
     const data = this.props.remainingBalance;
-    console.log("data", data);
+
     return (
       <div>
         <div className="col">
@@ -27,11 +25,9 @@ class RemainingBalance extends Component{
              </thead>
              <tbody>
                {
-
                  (data.loading)?
                  <tr><td>Loading Transactions...</td></tr>
                  : data.remainingbalances.map(item =>{
-
                    return(
                      <tr key={item.id}>
                           <th scope="row">{item.date.slice(0,10)}</th>
@@ -44,7 +40,6 @@ class RemainingBalance extends Component{
                    )
                  })
                }
-
              </tbody>
            </Table>
          </div>

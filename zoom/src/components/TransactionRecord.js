@@ -10,8 +10,7 @@ import {
   getRemainingBalance
  } from '../queries/queries'
 
-
-
+// Components
 import Extracash from './ExtraCash';
 import RegisterReading from './RegisterReading';
 import CashOutflow from './CashOutflow';
@@ -21,7 +20,6 @@ import RemainingBalance from './RemainingBalance';
     state = {
       activeTab: '1'
     };
-
 
   toggle =(tab)=>{
     if (this.state.activeTab !== tab) {

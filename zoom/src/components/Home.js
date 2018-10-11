@@ -12,14 +12,12 @@ class Home extends Component {
   handleSubmit = (event)=>{
     event.preventDefault();
     this.setState({
-
     })
   }
   render(){
     return (<div className="back">
       <div className="div-center">
         <div className="content">
-
           <h3>Login</h3>
           <hr/>
           <form onSubmit={this.handleSubmit}>
@@ -38,7 +36,6 @@ class Home extends Component {
             </div>
             <button type="submit" className="btn btn-primary"><Link to="/user/dash" style={{ color: '#FFF' }}>Login</Link></button>
             <hr/>
-
             <button type="button" className="btn btn-link">Reset Password</button>
           </form>
         </div>

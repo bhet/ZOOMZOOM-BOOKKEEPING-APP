@@ -26,7 +26,6 @@ class RegisterReadingUpdate extends Component{
     })
   }
 
-
   componentDidUpdate(prevProps, prevState){
     if(this.props.data.loading){
       return
@@ -37,7 +36,6 @@ class RegisterReadingUpdate extends Component{
         loaded:true
       })
     }
-
   }
 
   render(){

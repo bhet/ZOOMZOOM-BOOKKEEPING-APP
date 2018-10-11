@@ -42,14 +42,12 @@ class CashOutflowUpdate extends Component{
     if(this.props.data.loading){
       return
     }
-
     if(!this.state.loaded){
       this.setState({
         cashoutflow: this.props.data.cashOutflow,
         loaded:true
       })
     }
-
   }
   render(){
     const id = this.props.match.params.id;

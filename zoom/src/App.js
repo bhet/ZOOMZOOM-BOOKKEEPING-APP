@@ -16,9 +16,6 @@ import Sidenav from './components/sidenav'
 import { Row, Col } from 'reactstrap'
 
 
-
-import Gridlayout from './components/gridTemplate'
-
 //apollo client setup
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -43,8 +40,6 @@ class App extends Component {
               </Switch>
             </Col>
           </Row>
-
-
         </ApolloProvider>
       </BrowserRouter>
     );

@@ -18,14 +18,11 @@ class TopNav extends React.Component {
       <div>
         <Navbar color="primary"  dark expand="md">
           <NavbarBrand href="/">ZOOMZOOM</NavbarBrand>
-
             <Nav className="ml-auto" navbar>
               <NavItem color="white">
                 <Link to="/" style={{ color: '#FFF' }}>Logout</Link>
               </NavItem>
-
             </Nav>
-
         </Navbar>
       </div>
     );
