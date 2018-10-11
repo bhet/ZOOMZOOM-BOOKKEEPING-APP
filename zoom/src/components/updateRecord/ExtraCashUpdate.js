@@ -41,7 +41,18 @@ class ExtraCashUpdate extends Component{
         individual: this.state.extracashes.individual
       },
       refetchQueries: [{query: getExtraCashes}]
-    })
+    }).then(res => this.props.history.push('/user/transaction'))
+  }
+  componentDidMount(){
+    if(this.props.data.loading){
+      return
+    }
+    else{
+      this.setState({
+        extracashes: this.props.data.extraCash,
+        loaded:true
+      })
+    }
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -143,7 +154,7 @@ class ExtraCashUpdate extends Component{
             </div>
           </div>
           </div>
-          <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Submit</Link></Button>
+          <Button type="submit" className="btn btn-success">Submit</Button>
         </Form>
       </div>
     )

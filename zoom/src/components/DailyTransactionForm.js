@@ -64,7 +64,8 @@ class Entryform extends Component{
         variables:{
           sale: this.state.registerreadings.sale,
           check_cash: this.state.registerreadings.check_cash
-        }
+        },
+        refetchQueries: [{query: getRegisterReading}]
       });
       this.props.addCashOutflowMutation({
         variables:{
@@ -76,14 +77,16 @@ class Entryform extends Component{
           money_order: this.state.cashoutflows.money_order,
           money_gram: this.state.cashoutflows.money_gram,
           individual: this.state.cashoutflows.individual
-        }
+        },
+        refetchQueries: [{query: getCashOutflow}]
       });
       this.props.addRemainingBalanceMutation({
         variables:{
           checks: this.state.remainigbalances.checks,
           cash: this.state.remainigbalances.cash,
           change: this.state.remainigbalances.change
-        }
+        },
+        refetchQueries: [{query: getRemainingBalance}]
       })
   }
   render(){
@@ -288,7 +291,7 @@ class Entryform extends Component{
         </div>
       </div>
         </div>
-        <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Submit</Link></Button>
+        <Button type="submit" className="btn btn-success">Submit</Button>
         </Form>
       </div>
     )
@@ -300,5 +303,8 @@ export default compose(
   graphql(addRegisterReadingMutation,{name: "addRegisterReadingMutation"}),
   graphql(addCashOutflowMutation,{name: "addCashOutflowMutation"}),
   graphql(addRemainingBalanceMutation,{name: "addRemainingBalanceMutation"}),
-  graphql(getExtraCashes, {name: "getExtraCashes"})
+  graphql(getExtraCashes, {name: "getExtraCashes"}),
+  graphql(getCashOutflow, {name: "getCashOutflow"}),
+  graphql(getRemainingBalance, {name: "getRemainingBalance"}),
+  graphql(getRegisterReading, {name: "getRegisterReading"})
 )(Entryform)

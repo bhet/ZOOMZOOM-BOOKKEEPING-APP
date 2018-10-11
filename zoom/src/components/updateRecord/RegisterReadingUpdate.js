@@ -21,10 +21,21 @@ class RegisterReadingUpdate extends Component{
         id: this.state.registerreading.id,
         sale: this.state.registerreading.sale,
         check_cash: this.state.registerreading.check_cash
-      }
-    })
+      },
+      refetchQueries: [{query: getRegisterReading}]
+    }).then(res => this.props.history.push('/user/transaction'))
   }
-
+  componentDidMount(){
+    if(this.props.data.loading){
+      return
+    }
+    else{
+      this.setState({
+        extracashes: this.props.data.extraCash,
+        loaded:true
+      })
+    }
+  }
   componentDidUpdate(prevProps, prevState){
     if(this.props.data.loading){
       return
@@ -38,7 +49,6 @@ class RegisterReadingUpdate extends Component{
   }
 
   render(){
-    console.log("props", this.props)
     const id = this.props.match.params.id;
     let registerReading = this.props.data.loading ?
     <p>Data is Loading...</p>
@@ -69,7 +79,7 @@ class RegisterReadingUpdate extends Component{
           </div>
         </div>
       </div>
-      <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Update</Link></Button>
+      <Button type="submit" className="btn btn-success">Update</Button>
       </Form>
     )
   }
@@ -77,6 +87,7 @@ class RegisterReadingUpdate extends Component{
 
 export default compose(
   graphql(updateRegisterReading, {name: 'updateRegisterReading'}),
+  graphql(getRegisterReading, { name: "getRegisterReading"}),
   graphql(getRegisterReadingById, {
     options: (props) =>{
       return {

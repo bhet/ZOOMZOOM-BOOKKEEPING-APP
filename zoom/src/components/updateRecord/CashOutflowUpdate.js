@@ -34,8 +34,20 @@ class CashOutflowUpdate extends Component{
         money_order: this.state.cashoutflow.money_order,
         money_gram: this.state.cashoutflow.money_gram,
         individual: this.state.cashoutflow.individual
-      }
-    })
+      },
+      refetchQueries: [{query: getCashOutflow}]
+    }).then(res => this.props.history.push('/user/transaction'))
+  }
+  componentDidMount(){
+    if(this.props.data.loading){
+      return
+    }
+    else{
+      this.setState({
+        extracashes: this.props.data.cashOutflow,
+        loaded:true
+      })
+    }
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -130,7 +142,7 @@ class CashOutflowUpdate extends Component{
             </div>
           </div>
           </div>
-          <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Submit</Link></Button>
+          <Button type="submit" className="btn btn-success">Submit</Button>
         </Form>
       </div>
     )
@@ -139,6 +151,7 @@ class CashOutflowUpdate extends Component{
 
 export default compose(
   graphql(updateCashOutflow, {name: 'updateCashOutflow'}),
+  graphql(getCashOutflow, {name: "getCashOutflow"}),
   graphql(getCashOutflowById, {
   options: (props) =>{
     return {
