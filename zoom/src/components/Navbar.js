@@ -9,22 +9,25 @@ import {
   NavLink } from 'reactstrap';
 
 class TopNav extends React.Component {
-  NotLogIn = [
-    '/'
-  ];
 
   render() {
-    return (
-      <div>
+    return this.props.loggedIn ?
+    (
         <Navbar color="primary"  dark expand="md">
           <NavbarBrand href="/">ZOOMZOOM</NavbarBrand>
             <Nav className="ml-auto" navbar>
               <NavItem color="white">
-                <Link to="/" style={{ color: '#FFF' }}>Logout</Link>
+                <div style={{ color: '#FFF' }} onClick={()=>this.props.logOut()}>Logout</div>
               </NavItem>
             </Nav>
         </Navbar>
-      </div>
+    ):
+     (
+        <Navbar color="primary"  dark expand="md">
+          <NavbarBrand href="/">ZOOMZOOM</NavbarBrand>
+            <Nav className="ml-auto" navbar>
+            </Nav>
+        </Navbar>
     );
   }
 }

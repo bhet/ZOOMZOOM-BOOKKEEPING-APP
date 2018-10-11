@@ -4,6 +4,8 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter , Route, Switch } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
 
+import RequireAuth from './utilities/RequireAuth';
+
 //components
 import TransactionRecord from './components/TransactionRecord';
 import Home from './components/Home';
@@ -23,24 +25,37 @@ const client = new ApolloClient({
 });
 
 class App extends Component {
+  state={
+    loggedIn: !!JSON.parse(localStorage.getItem("loggedIn")) || false
+  }
+
+  logIn =(username, password)=>{
+    localStorage.setItem("loggedIn", "true")
+    this.setState({loggedIn : true })
+  }
+
+  logOut =()=>{
+    localStorage.removeItem("loggedIn")
+    this.setState({ loggedIn: false })
+  }
   render(){
     return (
       <BrowserRouter>
         <ApolloProvider client={client}>
-          <TopNav />
+          <TopNav loggedIn={this.state.loggedIn} logOut={this.logOut}/>
           <Row>
             <Route path="/user" render={() =><Col sm="2"><Sidenav /></Col>} />
             <Col sm="8">
               <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/user/dash" component={Main}/>
-                <Route path="/user/post" component={Entryform}/>
-                <Route path="/user/createuser" component={CreateUser}/>
-                <Route path="/user/transaction" component={Transaction} />
-                <Route path="/user/update/cash/:id" component={ExtraCashUpdate}/>
-                <Route path="/user/update/register/:id" component={RegisterReadingUpdate}/>
-                <Route path="/user/update/cashoutflow/:id" component={CashOutflowUpdate}/>
-                <Route path="/user/update/balance/:id" component={RemainingBalanceUpdate}/>
+                <Route exact path="/" render={(props) => <Home {...props} logIn={this.logIn} /> }/>
+                <Route path="/user/dash" component={(props) => <RequireAuth {...props} component={Main} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/post" component={(props) => <RequireAuth {...props} component={Entryform} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/createuser" component={(props) => <RequireAuth {...props} component={CreateUser} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/transaction" component={(props) => <RequireAuth {...props} component={Transaction} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/update/cash/:id" component={(props) => <RequireAuth {...props} component={ExtraCashUpdate} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/update/register/:id" component={(props) => <RequireAuth {...props} component={RegisterReadingUpdate} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/update/cashoutflow/:id" component={(props) => <RequireAuth {...props} component={CashOutflowUpdate} isAuthenticated={this.state.loggedIn} /> }/>
+                <Route path="/user/update/balance/:id" component={(props) => <RequireAuth {...props} component={RemainingBalanceUpdate} isAuthenticated={this.state.loggedIn} /> }/>
               </Switch>
             </Col>
           </Row>
