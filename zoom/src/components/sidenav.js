@@ -1,17 +1,25 @@
 import React from 'react';
 import '../css/sidenav.css';
+import {  Link, Router, Route} from 'react-router-dom';
 
 const Sidenav = ()=>{
   return (
-  <div>
-    <div className="sidenav">
-      <a href="/signup">Create User</a>
-      <a href="/post">Transaction Entry Form</a>
-      <a href="/dash">DashBoard</a>
-      <a href="#contact">Users</a>
-    </div>
-
-  </div>
+      <div className="sidenav">
+     <ul>
+       <li>
+         <Link to="/user/createuser">Create User</Link>
+       </li>
+       <li>
+         <Link to="/user/post">Transaction Entry Form</Link>
+       </li>
+       <li>
+         <Link to="/user/transaction">Transaction Record</Link>
+       </li>
+       <li>
+         Users
+       </li>
+     </ul>
+   </div>
   )
 }
 export default Sidenav

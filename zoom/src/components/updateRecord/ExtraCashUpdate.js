@@ -148,11 +148,9 @@ console.log("id", id);
             </div>
           </div>
           </div>
-          <Button type="submit" className="btn btn-success">Submit</Button>
+          <Button type="submit" className="btn btn-success"><Link to="/transaction">Submit</Link></Button>
         </Form>
-
       </div>
-
     )
   }
 }

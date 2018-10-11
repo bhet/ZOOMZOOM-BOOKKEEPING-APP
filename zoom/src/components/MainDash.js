@@ -11,7 +11,7 @@ import {
 import {graphql, compose} from 'react-apollo';
 import {sumForcash} from '../utilities/index';
 
-import Sidenav from './sidenav.js';
+// import Sidenav from './sidenav.js';
 
 import {getLastExtraCashRecord, getLastRegisterRecord, getLastCashOutflow, getLastRemainingBalance} from '../queries/queries'
 
@@ -37,7 +37,7 @@ class Main extends Component {
 
     return (<Container className="main">
       <Row>
-        <Col sm="2"><Sidenav/></Col>
+        
         <Col>
           <Row>
             <Col sm={{offset: 2}}>

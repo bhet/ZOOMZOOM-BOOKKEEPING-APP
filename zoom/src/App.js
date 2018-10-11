@@ -7,11 +7,14 @@ import { BrowserRouter , Route, Switch } from 'react-router-dom'
 import TransactionRecord from './components/TransactionRecord';
 import Home from './components/Home';
 import Entryform from './components/DailyTransactionForm';
-import Main from './components/main';
+import Main from './components/MainDash';
 import TopNav from './components/Navbar'
-import Signup from './components/Signup';
+import CreateUser from './components/CreateUser';
 import ExtraCashUpdate from './components/updateRecord/ExtraCashUpdate';
-import Tabar from './components/sidebar';
+import Transaction from './components/TransactionRecord';
+import Sidenav from './components/sidenav'
+import { Row, Col } from 'reactstrap'
+
 
 
 import Gridlayout from './components/gridTemplate'
@@ -27,15 +30,21 @@ class App extends Component {
       <BrowserRouter>
         <ApolloProvider client={client}>
           <TopNav />
-          <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/main" component={Main}/>
-            <Route path="/dash" component={TransactionRecord}/>
-            <Route path="/post" component={Entryform}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/update/:id" component={ExtraCashUpdate}/>
-            <Route path="/layout" component={Tabar} />
-          </Switch>
+          <Row>
+            <Route path="/user" render={() =><Col sm="2"><Sidenav /></Col>} />
+            <Col sm="8">
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/user/dash" component={Main}/>
+                <Route path="/user/post" component={Entryform}/>
+                <Route path="/user/createuser" component={CreateUser}/>
+                <Route path="/user/update/:id" component={ExtraCashUpdate}/>
+                <Route path="/user/transaction" component={Transaction} />
+              </Switch>
+            </Col>
+          </Row>
+
+
         </ApolloProvider>
       </BrowserRouter>
     );
