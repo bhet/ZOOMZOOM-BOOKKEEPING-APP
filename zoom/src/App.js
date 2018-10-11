@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter , Route, Switch } from 'react-router-dom'
+import { Row, Col } from 'reactstrap'
 
 //components
 import TransactionRecord from './components/TransactionRecord';
@@ -10,12 +11,12 @@ import Entryform from './components/DailyTransactionForm';
 import Main from './components/MainDash';
 import TopNav from './components/Navbar'
 import CreateUser from './components/CreateUser';
-import ExtraCashUpdate from './components/updateRecord/ExtraCashUpdate';
 import Transaction from './components/TransactionRecord';
 import Sidenav from './components/sidenav'
-import { Row, Col } from 'reactstrap'
-
-
+import ExtraCashUpdate from './components/updateRecord/ExtraCashUpdate';
+import CashOutflowUpdate from './components/updateRecord/CashOutflowUpdate';
+import RegisterReadingUpdate from './components/updateRecord/RegisterReadingUpdate';
+import RemainingBalanceUpdate from './components/updateRecord/RemainingBalanceUpdate';
 //apollo client setup
 const client = new ApolloClient({
   uri: "http://localhost:4000/graphql"
@@ -35,8 +36,11 @@ class App extends Component {
                 <Route path="/user/dash" component={Main}/>
                 <Route path="/user/post" component={Entryform}/>
                 <Route path="/user/createuser" component={CreateUser}/>
-                <Route path="/user/update/:id" component={ExtraCashUpdate}/>
                 <Route path="/user/transaction" component={Transaction} />
+                <Route path="/user/update/cash/:id" component={ExtraCashUpdate}/>
+                <Route path="/user/update/register/:id" component={RegisterReadingUpdate}/>
+                <Route path="/user/update/cashoutflow/:id" component={CashOutflowUpdate}/>
+                <Route path="/user/update/balance/:id" component={RemainingBalanceUpdate}/>
               </Switch>
             </Col>
           </Row>

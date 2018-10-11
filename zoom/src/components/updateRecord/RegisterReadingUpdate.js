@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
-
 import { updateRegisterReading, getRegisterReadingById} from '../../queries/queries';
 
 class RegisterReadingUpdate extends Component{
@@ -42,7 +41,7 @@ class RegisterReadingUpdate extends Component{
     const id = this.props.match.params.id;
     let registerReading = this.props.data.loading ?
     <p>Data is Loading...</p>
-    : this.state.extracashes
+    : this.state.registerreading
     if(!registerReading){
       registerReading = <p>Data is Loading...</p>
     }
@@ -69,15 +68,14 @@ class RegisterReadingUpdate extends Component{
           </div>
         </div>
       </div>
-      <Button type="submit" className="btn btn-success"><Link to="/dash">Submit</Link></Button>
+      <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Update</Link></Button>
       </Form>
     )
   }
 }
 
 export default compose(
-  graphql(updateRegisterReading {name: 'updateRegisterReading'}),
-
+  graphql(updateRegisterReading, {name: 'updateRegisterReading'}),
   graphql(getRegisterReadingById, {
     options: (props) =>{
       return {

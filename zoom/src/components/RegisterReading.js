@@ -33,7 +33,7 @@ class RegisterReading extends Component{
                           <td>{item.sale}</td>
                           <td>{item.check_cash}</td>
                           <td><TotalCashInflow totalRegisterReading={sumForcash(item)}  /></td>
-                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="warning"><Link to={`/user/update/register/${item.id}`}>Update</Link></Button></td>
                       </tr>
                     )
                  })

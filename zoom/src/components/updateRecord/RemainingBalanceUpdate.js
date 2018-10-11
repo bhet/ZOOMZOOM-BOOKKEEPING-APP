@@ -7,7 +7,7 @@ import { Button, Form } from 'reactstrap';
 class CashOutflowUpdate extends Component{
   render(){
     return (
-
+      <div></div>
     )
   }
 }

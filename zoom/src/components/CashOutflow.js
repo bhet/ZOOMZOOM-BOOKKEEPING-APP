@@ -44,7 +44,7 @@ class CashOutflow extends Component{
                           <td>{item.money_gram}</td>
                           <td>{item.individual}</td>
                           <td>{sumForcash(item)}</td>
-                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="warning"><Link to={`/update/cashoutflow/${item.id}`}>Update</Link></Button></td>
                         </tr>
                      );
                    })

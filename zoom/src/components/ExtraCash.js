@@ -46,7 +46,7 @@ class Extracash extends Component{
                           <td>{item.lotto_lottery}</td>
                           <td>{item.individual}</td>
                           <td><TotalCashInflow totalExtraCash={sumForcash(item)}  /></td>
-                          <td><Button color="warning"><Link to={`/update/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="warning"><Link to={`/user/update/cash/${item.id}`}>Update</Link></Button></td>
                         </tr>
                      );
                    })

@@ -129,7 +129,7 @@ class CashOutflowUpdate extends Component{
             </div>
           </div>
           </div>
-          <Button type="submit" className="btn btn-success">Submit</Button>
+          <Button type="submit" className="btn btn-success"><Link to="/user/transaction">Submit</Link></Button>
         </Form>
       </div>
     )
