@@ -9,6 +9,10 @@ import {
   NavLink } from 'reactstrap';
 
 class TopNav extends React.Component {
+  NotLogIn = [
+    '/'
+  ];
+
   render() {
     return (
       <div>
