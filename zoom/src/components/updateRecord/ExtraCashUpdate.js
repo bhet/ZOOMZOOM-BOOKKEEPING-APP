@@ -67,6 +67,10 @@ class ExtraCashUpdate extends Component{
     }
   }
   render(){
+    console.log(this.props)
+    const date = this.props.data.loading ?
+    <p>Data Loading...</p>
+    : this.props.data.extraCash.date.slice(0, 10);
     const id = this.props.match.params.id;
     let extraCash = this.props.data.loading ?
     <p>Data is Loading...</p>
@@ -77,7 +81,7 @@ class ExtraCashUpdate extends Component{
     return(
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <h4>Update Extra Cash on</h4>
+          <h4>Update Extra Cash on {date}</h4>
           <div className='col  border-info'>
             <div className="extracash">
             <div className="input-group mb-3">

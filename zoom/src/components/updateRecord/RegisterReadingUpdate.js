@@ -52,6 +52,9 @@ class RegisterReadingUpdate extends Component{
   }
 
   render(){
+    const date = this.props.data.loading ?
+    <p>Data Loading...</p>
+    : this.props.data.registerReading.date.slice(0, 10);
     const id = this.props.match.params.id;
     let registerReading = this.props.data.loading ?
     <p>Data is Loading...</p>

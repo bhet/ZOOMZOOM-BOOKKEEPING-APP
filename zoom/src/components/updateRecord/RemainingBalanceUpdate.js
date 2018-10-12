@@ -42,6 +42,9 @@ class RemainingBalanceUpdate extends Component{
   }
 
   render(){
+    const date = this.props.data.loading ?
+    <p>Data Loading...</p>
+    : this.props.data.remainingBalance.date.slice(0, 10);
     const id = this.props.match.params.id;
     let remainingBalance = this.props.data.loading ?
     <p>Data is Loading...</p>
@@ -51,7 +54,7 @@ class RemainingBalanceUpdate extends Component{
     }
     return (
       <Form onSubmit={this.handleSubmit}>
-        <h4>Update Remaining Balance on </h4>
+        <h4>Update Remaining Balance on {date}</h4>
         <div className='col border-info'>
         <div className="register">
           <div className="input-group mb-3">

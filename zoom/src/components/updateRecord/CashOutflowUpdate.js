@@ -65,7 +65,9 @@ class CashOutflowUpdate extends Component{
     }
   }
   render(){
-    console.log("props", this.props)
+    const date = this.props.data.loading ?
+    <p>Data Loading...</p>
+    : this.props.data.cashOutflow.date.slice(0, 10);
     const id = this.props.match.params.id;
     let cashOutflow = this.props.data.loading ?
     <p>Data is Loading...</p>
@@ -75,7 +77,7 @@ class CashOutflowUpdate extends Component{
     }
     return (
       <div>
-        <h4>Update CashOutflow(Total Vendor paidout) Here</h4>
+        <h4>Update CashOutflow(Total Vendor paidout) on {date}</h4>
         <Form onSubmit={this.handleSubmit}>
           <div className='col border-info'>
             <div className="extracash">

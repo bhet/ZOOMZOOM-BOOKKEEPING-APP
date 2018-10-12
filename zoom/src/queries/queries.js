@@ -30,6 +30,7 @@ query($id: ID){
     lotto_lottery
     collect
     individual
+    date
   }
 }
 `
