@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
+import { loginMutation } from '../queries/queries';
 
 class Home extends Component {
   state={
@@ -8,10 +9,19 @@ class Home extends Component {
   };
   handleSubmit = (event)=>{
     event.preventDefault();
-    this.props.logIn(this.state.username, this.state.password);
-    this.props.history.push('/user/dash')
+    this.props.login({
+      variables:{
+        username: this.state.username,
+        password:  this.state.password
+      }
+    })
+      .then((data) => {
+        this.props.logIn()
+        this.props.history.push('/user/dash')
+      });
   }
   render(){
+    console.log("login props", this.props);
     return (<div className="back">
       <div className="div-center">
         <div className="content">
@@ -42,4 +52,4 @@ class Home extends Component {
   }
 
 }
-export default Home;
+export default compose(graphql(loginMutation, {name: "login"}))(Home);

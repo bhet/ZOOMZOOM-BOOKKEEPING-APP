@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, hover, Button } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 import { Link} from 'react-router-dom';
 
@@ -9,11 +9,11 @@ class RemainingBalance extends Component{
     return (
       <div>
         <div className="col">
-            <h4>Daily Remaining Balance in Store Table</h4>
+            <h4><b>Daily Remaining Balance in Store</b></h4>
         <Table hover bordered style={{overflowX: "scroll"}}>
              <thead>
                <tr>
-                 <th>DATE</th>
+                 <th style={{ width: "300px" }}>DATE</th>
                  <th>Checks</th>
                  <th>Cash</th>
                  <th>Change</th>
@@ -32,7 +32,7 @@ class RemainingBalance extends Component{
                           <td>{item.cash}</td>
                           <td>{item.change}</td>
                           <td>{sumForcash(item)}</td>
-                          <td><Button color="warning"><Link to={`/user/update/balance/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="success"><Link to={`/user/update/balance/${item.id}`} style={{color:"#fff"}}>Update</Link></Button></td>
                         </tr>
                    )
                  })

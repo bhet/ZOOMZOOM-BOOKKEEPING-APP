@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter , Route, Switch } from 'react-router-dom'
 import { Row, Col } from 'reactstrap'
-
 import RequireAuth from './utilities/RequireAuth';
+import { createHttpLink } from 'apollo-link-http';
+import { ApolloLink } from 'apollo-link';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { setContext } from 'apollo-link-context';
+import 'tachyons';
 
 //components
 import TransactionRecord from './components/TransactionRecord';
@@ -20,16 +24,48 @@ import CashOutflowUpdate from './components/updateRecord/CashOutflowUpdate';
 import RegisterReadingUpdate from './components/updateRecord/RegisterReadingUpdate';
 import RemainingBalanceUpdate from './components/updateRecord/RemainingBalanceUpdate';
 //apollo client setup
-const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql"
+
+const httpLink = createHttpLink({uri: "http://localhost:4000/graphql"})
+
+// const client = new ApolloClient({
+//   uri: "http://localhost:4000/graphql"
+// });
+
+// const middlewareLink = new ApolloLink((operation, forward) =>{
+//   const token = localStorage.getItem('token');
+//   const authorizationHeader = token ? `Bearer ${token}` : null;
+//   operation.setContext({
+//     headers: {
+//       authorization: authorizationHeader
+//     }
+//   })
+//   return forward(operation)
+// })
+//const httpLinkWithAuthToken = middlewareLink.concat(httpLink);
+
+const authLink = setContext((_, {headers}) =>{
+  const token = localStorage.getItem('token');
+  return {
+    headers:{
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ""
+    }
+  }
 });
+
+
+const client = new ApolloClient({
+  link:  authLink.concat(httpLink),
+  cache: new InMemoryCache()
+})
 
 class App extends Component {
   state={
-    loggedIn: !!JSON.parse(localStorage.getItem("loggedIn")) || false
+    loggedIn: !!JSON.parse(localStorage.getItem("loggedIn")) || false,
+    selected: null
   }
 
-  logIn =(username, password)=>{
+  logIn =()=>{
     localStorage.setItem("loggedIn", "true")
     this.setState({loggedIn : true })
   }

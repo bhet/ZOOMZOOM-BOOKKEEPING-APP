@@ -336,7 +336,39 @@ mutation($id: ID!, $checks: Float!, $cash: Float!, $change: Float!){
   }
 }
 `
-
+const getUsers = gql`
+  {
+    users{
+    id
+    fullname
+    username
+  }
+}
+`
+const addUser = gql`
+  mutation($fullname: String!, $username: String!, $email: String!, $password: String!){
+    createUsers(fullname: $fullname, username: $username, email: $email,password: $password){
+      fullname
+      username
+    }
+  }
+`
+const getUserById = gql`
+  query($id: ID){
+    getUser(id: $id){
+      id
+      fullname
+      username
+    }
+  }
+`
+const loginMutation = gql`
+  mutation($username: String!, $password: String!){
+    login(username: $username, password: $password){
+      token
+    }
+  }
+`
 export {
   getExtraCashes,
   getExtraCashById,
@@ -357,5 +389,9 @@ export {
   updateRemainingBalance,
   getCashOutflowById,
   getRemainingBalanceById,
-  getRegisterReadingById
+  getRegisterReadingById,
+  getUsers,
+  addUser,
+  getUserById,
+  loginMutation
 }

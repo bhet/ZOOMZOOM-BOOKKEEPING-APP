@@ -16,6 +16,7 @@ import {getLastExtraCashRecord,
 
 class Main extends Component {
   render() {
+
     const extracash = this.props.getLastExtraCashRecord.loading
       ? <p>Extra Cash is Loading...</p>
       : this.props.getLastExtraCashRecord.lastRecordOfExtraCash[0];
@@ -42,12 +43,17 @@ class Main extends Component {
     (<td className="text-danger"><b>Short</b></td>)
     : (<td className="text-warning"><b>Over</b></td>)
     return (<Container className="main">
-    <h3>This Transaction is from {date}</h3>
+    <Row>
+      <Col sm="12" md={{ size: 8, offset: 3 }}>
+        <h3 style={{margin: "10px"}}>This Transaction is from {date}</h3>
+        <br></br>
+      </Col>
+    </Row>
       <Row>
         <Col>
           <Row>
             <Col sm={{offset: 2}}>
-              <h5>Extra Cash</h5>
+              <h5><b>Extra Cash</b></h5>
               <Table hover bordered style={{overflowX: "scroll"}}>
                 <thead>
                   <tr>
@@ -96,7 +102,7 @@ class Main extends Component {
               </Table>
             </Col>
             <Col sm={{offset: 2}}>
-              <h5>Cash Outflow</h5>
+              <h5><b>Cash Outflow</b></h5>
                 <Table hover bordered style={{overflowX: "scroll"
                   }}>
                   <thead>
@@ -144,7 +150,7 @@ class Main extends Component {
           </Row>
           <Row>
             <Col sm={{offset: 2}}>
-              <h5>Register Reading</h5>
+              <h5><b>Register Reading</b></h5>
               <Table hover bordered style={{overflowX: "scroll"
                 }}>
                 <thead>
@@ -170,7 +176,7 @@ class Main extends Component {
               </Table>
             </Col>
             <Col sm={{offset: 2}}>
-              <h5>Remaining Balance</h5>
+              <h5><b>Remaining Balance</b></h5>
                 <Table hover bordered style={{overflowX: "scroll"
                   }}>
                   <thead>
@@ -202,7 +208,7 @@ class Main extends Component {
           </Row>
           <Row>
             <Col sm={{offset: 2}}>
-              <h5>Total CashInflow Table</h5>
+              <h5><b>Total CashInflow Table</b></h5>
                 <Table hover bordered style={{overflowX: "scroll"
                   }}>
                   <thead>
@@ -228,7 +234,7 @@ class Main extends Component {
                 </Table>
             </Col>
             <Col sm={{offset: 2}}>
-              <h5>Inflow Outflow Balance</h5>
+              <h5><b>Inflow Outflow Balance</b></h5>
                 <Table hover bordered style={{overflowX: "scroll"
                   }}>
                   <thead>

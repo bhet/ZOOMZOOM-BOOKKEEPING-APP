@@ -13,11 +13,11 @@ class Extracash extends Component{
     return (
       <div id="extra-cash">
         <div className="col">
-            <h4>Daily Extra Cash Table</h4>
+            <h4><b>Daily Extra Cash</b></h4>
         <Table hover bordered style={{overflowX: "scroll"}}>
              <thead>
                <tr>
-                 <th>DATE</th>
+                 <th style={{width:"300px"}}>DATE</th>
                  <th>Yesterday Cash</th>
                  <th>Cash From Bank</th>
                  <th>Cash From ATM</th>
@@ -46,7 +46,7 @@ class Extracash extends Component{
                           <td>{item.lotto_lottery}</td>
                           <td>{item.individual}</td>
                           <td><TotalCashInflow totalExtraCash={sumForcash(item)}  /></td>
-                          <td><Button color="warning"><Link to={`/user/update/cash/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="success" ><Link to={`/user/update/cash/${item.id}`} style={{color:"#fff"}}>Update</Link></Button></td>
                         </tr>
                      );
                    })

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import { Button, Form } from 'reactstrap';
 import { updateRegisterReading,
   getRegisterReadingById,
@@ -64,7 +63,7 @@ class RegisterReadingUpdate extends Component{
     }
     return (
       <Form>
-        <h4>Update Register Reading on </h4>
+        <h4>Update Register Reading on {date}</h4>
         <div className='col border-info'>
         <div className="register">
           <div className="input-group mb-3">

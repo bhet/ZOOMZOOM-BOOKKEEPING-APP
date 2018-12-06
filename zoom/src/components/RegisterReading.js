@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, hover, Button } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { sumForcash } from '../utilities/index';
 import { Link } from 'react-router-dom';
 
@@ -12,11 +12,11 @@ class RegisterReading extends Component{
     return (
       <div>
         <div className="col">
-            <h4>Daily Register Reading Table</h4>
+            <h4><b>Daily Register Reading</b></h4>
         <Table hover bordered style={{overflowX: "scroll"}}>
              <thead>
                <tr>
-                 <th>DATE</th>
+                 <th style={{width: 300}}>DATE</th>
                  <th>Sale</th>
                  <th>Check Cash</th>
                  <th>Total</th>
@@ -33,7 +33,7 @@ class RegisterReading extends Component{
                           <td>{item.sale}</td>
                           <td>{item.check_cash}</td>
                           <td><TotalCashInflow totalRegisterReading={sumForcash(item)}  /></td>
-                          <td><Button color="warning"><Link to={`/user/update/register/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="success"><Link to={`/user/update/register/${item.id}`} style={{color:"#fff"}}>Update</Link></Button></td>
                       </tr>
                     )
                  })

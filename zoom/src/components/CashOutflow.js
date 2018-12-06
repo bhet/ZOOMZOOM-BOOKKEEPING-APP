@@ -11,11 +11,11 @@ class CashOutflow extends Component{
     return (
       <div id="cash-outflow">
         <div className="col">
-            <h4>Daily Cash Outflow Table</h4>
+            <h4><b>Daily Cash Outflow</b></h4>
         <Table hover bordered style={{overflowX: "scroll"}}>
              <thead>
                <tr>
-                 <th>DATE</th>
+                 <th style={{width:300}}>DATE</th>
                  <th>Vendor Paid</th>
                  <th>Credit Card</th>
                  <th>Lotto Lottery</th>
@@ -44,7 +44,7 @@ class CashOutflow extends Component{
                           <td>{item.money_gram}</td>
                           <td>{item.individual}</td>
                           <td>{sumForcash(item)}</td>
-                          <td><Button color="warning"><Link to={`/user/update/cashoutflow/${item.id}`}>Update</Link></Button></td>
+                          <td><Button color="success"><Link to={`/user/update/cashoutflow/${item.id}`} style={{color:"#fff"}}>Update</Link></Button></td>
                         </tr>
                      );
                    })

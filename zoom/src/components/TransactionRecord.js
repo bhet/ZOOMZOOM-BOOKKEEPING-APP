@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
 import { graphql, compose } from 'react-apollo';
 import {
@@ -40,7 +40,7 @@ import RemainingBalance from './RemainingBalance';
               className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => { this.toggle('1'); }}
             >
-              Extra Cash
+              <b>Extra Cash</b>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -48,7 +48,7 @@ import RemainingBalance from './RemainingBalance';
               className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => { this.toggle('2'); }}
             >
-              Register Reading
+              <b>Register Reading</b>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -56,7 +56,7 @@ import RemainingBalance from './RemainingBalance';
               className={classnames({ active: this.state.activeTab === '3' })}
               onClick={() => { this.toggle('3'); }}
             >
-              Cash Outflow
+              <b>Cash Outflow</b>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -64,7 +64,7 @@ import RemainingBalance from './RemainingBalance';
               className={classnames({ active: this.state.activeTab === '4' })}
               onClick={() => { this.toggle('4'); }}
             >
-              Remaining Balance
+              <b>Remaining Balance</b>
             </NavLink>
           </NavItem>
         </Nav>

@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { withRouter } from 'react-router-dom'
 
-export default class RequireAuth extends React.Component {
+class RequireAuth extends React.Component {
 
     componentDidMount() {
       this._checkAndRedirect();
@@ -10,8 +11,9 @@ export default class RequireAuth extends React.Component {
       this._checkAndRedirect();
     }
     _checkAndRedirect() {
+
       if (!this.props.isAuthenticated) {
-        // redirect();
+        this.props.history.push('/')
         console.log('not logged in')
       }
     }
@@ -25,3 +27,5 @@ export default class RequireAuth extends React.Component {
       );
     }
   }
+
+export default withRouter(RequireAuth)

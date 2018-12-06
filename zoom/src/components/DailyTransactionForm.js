@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button, Form } from 'reactstrap';
 import { graphql, compose } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import '../css/transactionForm.css';
 import { addExtraCashMutation,
   getExtraCashes,
@@ -63,7 +62,7 @@ class Entryform extends Component{
           individual: this.state.extracashes.individual
         },
         refetchQueries: [{query: getExtraCashes}]
-      }).then(res => this.props.history.push('/user/transaction'));
+      })
       this.props.addRegisterReadingMutation({
         variables:{
           sale: this.state.registerreadings.sale,
@@ -92,14 +91,19 @@ class Entryform extends Component{
         },
         refetchQueries: [{query: getRemainingBalance}]
       })
+      .then((data) => {
+        this.props.addRemainingBalanceMutation()
+        this.props.history.push('/user/dash')
+      })
   }
   render(){
+    console.log(this.props);
     return (
       <div className="container" style={{display: 'flex'}}>
       <Form onSubmit={this.handleSubmit}>
         <div className='row'>
           <div className='col border border-info'>
-            <h4>Enter Cash Entry of Today</h4>
+            <h4>Extra Cash Entry</h4>
             <div className="extracash">
             <div className="input-group mb-3">
               <div className="input-group-prepend">
@@ -176,7 +180,7 @@ class Entryform extends Component{
           </div>
           </div>
           <div className='col border border-info'>
-          <h4>Enter Register Entry of Today</h4>
+          <h4>Register Sale Entry</h4>
           <div className="register">
             <div className="input-group mb-3">
               <div className="input-group-prepend">
@@ -197,7 +201,7 @@ class Entryform extends Component{
           </div>
         </div>
         <div className='col border border-info'>
-          <h4>Enter CashOutflow(Total Vendor paidout) Here</h4>
+          <h4>CashOutflow(Total Vendor paidout) Entry </h4>
           <div className="extracash">
           <div className="input-group mb-3">
             <div className="input-group-prepend">
@@ -266,7 +270,7 @@ class Entryform extends Component{
         </div>
         </div>
         <div className='col border border-info'>
-        <h4>Enter Remaining Balance</h4>
+        <h4>Remaining Balance Entry</h4>
         <div className=" border border-light">
           <div className="input-group mb-3">
             <div className="input-group-prepend">

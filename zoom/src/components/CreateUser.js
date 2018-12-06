@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
 import '../css/signup.css';
-import { Link } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
+import { addUser } from '../queries/queries'
 
 class CreateUser extends Component{
   state={
     fullname: '',
     username: '',
-    password: '',
-    verifypassword: ''
+    email: '',
+    password: ''
+
   }
 
   handleSubmit =(event)=>{
     event.preventDefault();
+    this.props.addUser({
+      variables:{
+        fullname: this.state.fullname,
+        username: this.state.username,
+        email: this.state.username,
+        password: this.state.password
+      }
+    })
+    .then((data) => {
+      this.props.addUser()
+      this.props.history.push('/user/dash')
+    })
   }
   render(){
+    console.log("user", this.props)
     return (
     <div>
       <form onSubmit={this.handleSubmit}>
@@ -36,17 +51,14 @@ class CreateUser extends Component{
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" name="user_password"
             onChange={(e)=>this.setState({password: e.target.value})}/>
-
-          <label htmlFor="password">Verify Password:</label>
-          <input type="password" id="verifypassword" name="user_password"
-            onChange={(e)=>this.setState({verifypassword: e.target.value})}/>
         </fieldset>
-
-        <button type="submit"><Link to="/dash">Create User</Link></button>
+        <button type="submit">Create User</button>
       </form>
       </div>
     )
   }
 }
 
-export default CreateUser;
+export default compose(
+  graphql(addUser, {name: "addUser"})
+)(CreateUser);

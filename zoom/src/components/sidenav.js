@@ -1,28 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 import '../css/sidenav.css';
-import {  Link, Router, Route} from 'react-router-dom';
+import {  Link } from 'react-router-dom';
+import { graphql } from 'react-apollo';
+import { getUsers } from '../queries/queries';
 
-const Sidenav = ()=>{
-  return (
-      <div className="sidenav">
-     <ul>
-       <li>
-         <Link to="/user/dash">Dash Display</Link>
-       </li>
-       <li>
-         <Link to="/user/createuser">Create User</Link>
-       </li>
-       <li>
-         <Link to="/user/post">Transaction Entry Form</Link>
-       </li>
-       <li>
-         <Link to="/user/transaction">Transaction Record</Link>
-       </li>
-       <li>
-         Users
-       </li>
-     </ul>
-   </div>
-  )
+class Sidenav extends Component{
+
+  render(){
+
+    const users = this.props.data.loading ? <p> Data is loading... </p>
+  : this.props.data.users.map(item => {
+    return (
+      <ul>
+      <li key={item.id}>{item.username}</li>
+      </ul>
+    )})
+    return (
+        <div className="sidenav">
+       <ul>
+         <li>
+           <Link to="/user/dash" style={{color:"#fff"}}>Dash Display</Link>
+         </li>
+         <li>
+           <Link to="/user/transaction" style={{color:"#fff"}}>Transactions Record</Link>
+         </li>
+         <li>
+           <Link to="/user/post" style={{color:"#fff"}}>Transactions Entry Form</Link>
+         </li>
+         <li>
+           <Link to="/user/createuser" style={{color:"#fff"}}>Create User</Link>
+         </li>
+         <li >
+           Users
+           {users}
+         </li>
+       </ul>
+     </div>
+    )
+  }
+
 }
-export default Sidenav
+export default graphql(getUsers)(Sidenav)
